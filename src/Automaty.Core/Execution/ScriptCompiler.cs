@@ -22,12 +22,17 @@
 		public ScriptCompiler(ILogger<ScriptCompiler> logger)
 		{
 			Logger = logger;
+
+			MetadataReferences = new List<MetadataReference>(ScriptOptions.Default.MetadataReferences)
+			{
+				// Add Automaty.Core by default
+				MetadataReference.CreateFromFile(GetType().GetTypeInfo().Assembly.Location)
+			};
 		}
 
 		public ILogger<ScriptCompiler> Logger { get; set; }
 
-		public ICollection<MetadataReference> MetadataReferences { get; set; } =
-			new List<MetadataReference>(ScriptOptions.Default.MetadataReferences);
+		public ICollection<MetadataReference> MetadataReferences { get; set; }
 
 		public void AddRuntimeLibraries(IEnumerable<RuntimeLibrary> runtimeLibraries)
 		{

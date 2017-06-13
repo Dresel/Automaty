@@ -76,13 +76,23 @@
 
 					foreach (MethodInfo methodInfo in methodInfos)
 					{
-						using (ScriptContext scriptContext = new ScriptContext(sourceFilePath, projectFilePath, LoggerFactory))
+						if (methodInfo.GetParameters().Length == 0)
 						{
 							Logger.WriteInfo($"Invoking {methodInfo.DeclaringType}->{methodInfo.Name}.");
 
 							methodInfo.Invoke(
-								methodInfo.IsStatic ? methodInfo.DeclaringType : Activator.CreateInstance(methodInfo.DeclaringType),
-								new object[] { scriptContext });
+								methodInfo.IsStatic ? methodInfo.DeclaringType : Activator.CreateInstance(methodInfo.DeclaringType), new object[] { });
+						}
+						else
+						{
+							using (ScriptContext scriptContext = new ScriptContext(sourceFilePath, projectFilePath, LoggerFactory))
+							{
+								Logger.WriteInfo($"Invoking {methodInfo.DeclaringType}->{methodInfo.Name}.");
+
+								methodInfo.Invoke(
+									methodInfo.IsStatic ? methodInfo.DeclaringType : Activator.CreateInstance(methodInfo.DeclaringType),
+									new object[] { scriptContext });
+							}
 						}
 					}
 				}
