@@ -4,6 +4,10 @@
 		<PackageId>Automaty.MSBuild</PackageId>
 		<Description>The MSBuild task for Automaty - a .NET Core based code automation tool for .NET Core projects.</Description>
 		<PackageTags>CodeGeneration MSBuild CodeGen T4 </PackageTags>
+		<PackageProjectUrl>https://github.com/Dresel/Automaty</PackageProjectUrl>
+		<PackageLicenseUrl>https://github.com/Dresel/Automaty/blob/master/LICENSE.md</PackageLicenseUrl>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/Dresel/Automaty.git</RepositoryUrl>
 		<Authors>Christopher Dresel</Authors>
 		<Company>Christopher Dresel</Company>
 		<PackageOutputPath>..\..\.nuget\packages\Automaty.MSBuild</PackageOutputPath>
