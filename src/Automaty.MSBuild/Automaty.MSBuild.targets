@@ -1,0 +1,23 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<ItemGroup>
+		<AvailableItemName Include="AutomatyFile" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<TaskAssemblySubPath Condition=" '$(MSBuildRuntimeType)' == 'Core' ">netstandard1.5\</TaskAssemblySubPath>
+		<TaskAssemblySubPath Condition=" '$(MSBuildRuntimeType)' != 'Core' ">net46\</TaskAssemblySubPath>
+	</PropertyGroup>
+
+	<Target Name="ResolveAutomatyFiles">
+		<ItemGroup>
+			<AutomatyFile Condition=" '@(AutomatyFile)' == '' " Include="**\*.Automaty.cs" />
+		</ItemGroup>
+	</Target>
+
+	<UsingTask TaskName="AutomatyTask" AssemblyFile="$(MSBuildThisFileDirectory)$(TaskAssemblySubPath)Automaty.MSBuild.dll" />
+
+	<Target Name="Automaty" DependsOnTargets="ResolveAutomatyFiles" BeforeTargets="CoreCompile">
+		<AutomatyTask ProjectFilePath="$(MSBuildProjectFullPath)" ScriptFiles="@(AutomatyFile)" IsVerbose="$(AutomatyIsVerbose)" />
+	</Target>
+</Project>

@@ -1,0 +1,72 @@
+﻿// Copyright (c) .NET Foundation and contributors. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+namespace Automaty.Core.Resolution
+{
+	using System.Collections.Generic;
+	using System.IO;
+	using System.Linq;
+	using NuGet.Common;
+	using NuGet.Configuration;
+	using NuGet.Packaging;
+	using NuGet.ProjectModel;
+	using NuGet.Versioning;
+
+	// See https://github.com/dotnet/sdk/blob/master/src/Tasks/Microsoft.NET.Build.Tasks/NuGetPackageResolver.cs
+	internal class NuGetPackageResolver
+	{
+		private readonly FallbackPackagePathResolver packagePathResolver;
+
+		public NuGetPackageResolver(INuGetPathContext pathContext)
+		{
+			this.packagePathResolver = new FallbackPackagePathResolver(pathContext);
+		}
+
+		public NuGetPackageResolver(string userPackageFolder, IEnumerable<string> fallbackPackageFolders)
+		{
+			this.packagePathResolver = new FallbackPackagePathResolver(userPackageFolder, fallbackPackageFolders);
+		}
+
+		public static NuGetPackageResolver CreateResolver(LockFile lockFile, string projectPath)
+		{
+			NuGetPackageResolver packageResolver;
+
+			string userPackageFolder = lockFile.PackageFolders.FirstOrDefault()?.Path;
+
+			if (userPackageFolder != null)
+			{
+				IEnumerable<string> fallBackFolders = lockFile.PackageFolders.Skip(1).Select(f => f.Path);
+				packageResolver = new NuGetPackageResolver(userPackageFolder, fallBackFolders);
+			}
+			else
+			{
+				NuGetPathContext nugetPathContext = NuGetPathContext.Create(Path.GetDirectoryName(projectPath));
+				packageResolver = new NuGetPackageResolver(nugetPathContext);
+			}
+
+			return packageResolver;
+		}
+
+		public string GetPackageDirectory(string packageId, NuGetVersion version)
+		{
+			string packageRoot = null;
+
+			return GetPackageDirectory(packageId, version, out packageRoot);
+		}
+
+		public string GetPackageDirectory(string packageId, NuGetVersion version, out string packageRoot)
+		{
+			packageRoot = null;
+			FallbackPackagePathInfo pkginfo = this.packagePathResolver.GetPackageInfo(packageId, version);
+
+			if (pkginfo != null)
+			{
+				packageRoot =
+					pkginfo.PathResolver
+						.GetVersionListPath(""); //TODO Remove Once Nuget is updated to use FallbackPackagePathInfo.PathResolver.RootPath
+			}
+
+			return this.packagePathResolver.GetPackageDirectory(packageId, version);
+		}
+	}
+}

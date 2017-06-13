@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+	<PropertyGroup>
+		<PackageId>Automaty.MSBuild</PackageId>
+		<PackageVersion>1.0.0</PackageVersion>
+		<Authors>Christopher Dresel</Authors>
+		<Company>Christopher Dresel</Company>
+		<PackageOutputPath>..\..\.nuget\packages\Automaty.MSBuild</PackageOutputPath>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<IncludeBuildOutput>False</IncludeBuildOutput>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<TargetFrameworks Condition="'$(OS)' == 'Windows_NT'">netstandard1.5;net46</TargetFrameworks>
+		<TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard1.5</TargetFrameworks>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<TargetFrameworksSplitted Include="$(TargetFrameworks.Split(';'))" />
+	</ItemGroup>
+
+	<Target Name="CollectRuntimeOutputs" BeforeTargets="_GetPackageFiles">
+		<ItemGroup>
+			<Content Include="$(OutputPath)\%(TargetFrameworksSplitted.Identity)\$(AssemblyName).dll;">
+				<Pack>true</Pack>
+				<PackagePath>build\%(TargetFrameworksSplitted.Identity)\</PackagePath>
+			</Content>
+			<Content Include=".\*.targets;">
+				<Pack>true</Pack>
+				<PackagePath>build\</PackagePath>
+			</Content>
+		</ItemGroup>
+	</Target>
+
+	<ItemGroup>
+		<PackageReference Include="Automaty.DotNetCli" Version="1.0.0" />
+		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.3.0-preview-000117-01" />
+	</ItemGroup>
+</Project>
