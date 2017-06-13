@@ -1,7 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
 	<PropertyGroup>
+		<Version>1.0.0-alpha1</Version>
 		<PackageId>Automaty.MSBuild</PackageId>
-		<PackageVersion>1.0.0</PackageVersion>
+		<Description>The MSBuild task for Automaty - a .NET Core based code automation tool for .NET Core projects.</Description>
+		<PackageTags>CodeGeneration MSBuild CodeGen T4 </PackageTags>
 		<Authors>Christopher Dresel</Authors>
 		<Company>Christopher Dresel</Company>
 		<PackageOutputPath>..\..\.nuget\packages\Automaty.MSBuild</PackageOutputPath>
@@ -32,7 +34,7 @@
 	</Target>
 
 	<ItemGroup>
-		<PackageReference Include="Automaty.DotNetCli" Version="1.0.0" />
+		<PackageReference Include="Automaty.DotNetCli" Version="1.0.0-alpha1" />
 		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.3.0-preview-000117-01" />
 	</ItemGroup>
 </Project>
