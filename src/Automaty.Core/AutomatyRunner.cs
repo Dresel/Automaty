@@ -4,10 +4,10 @@
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
+	using Automaty.Common.Logging;
 	using Automaty.Core.Execution;
 	using Automaty.Core.Logging;
 	using Automaty.Core.Resolution;
-
 #if NETSTANDARD1_5
 	using System.Runtime.Loader;
 #else

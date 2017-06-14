@@ -5,6 +5,8 @@
 	using System.IO;
 	using System.Linq;
 	using System.Reflection;
+	using Automaty.Common.Execution;
+	using Automaty.Common.Logging;
 	using Automaty.Core.Logging;
 	using Automaty.Core.Resolution;
 	using Microsoft.CodeAnalysis;
@@ -157,8 +159,10 @@
 			ICollection<string> additionalFiles = new List<string>();
 			ICollection<string> additionalDirectories = new List<string>();
 
-			IEnumerable<AttributeData> attributes = semanticModel.SyntaxTree.GetRoot().DescendantNodes()
-				.OfType<ClassDeclarationSyntax>().SelectMany(x => semanticModel.GetDeclaredSymbol(x).GetAttributes());
+			IEnumerable<AttributeData> attributes = semanticModel.SyntaxTree.GetRoot()
+				.DescendantNodes()
+				.OfType<ClassDeclarationSyntax>()
+				.SelectMany(x => semanticModel.GetDeclaredSymbol(x).GetAttributes());
 
 			foreach (AttributeData attribute in attributes)
 			{
@@ -215,8 +219,8 @@
 			return (additionalFiles, additionalDirectories);
 		}
 
-		protected (ICollection<string> files, ICollection<string> folders)
-			GetAdditionalFilesByCommentDirectives(SyntaxTree syntaxTree)
+		protected (ICollection<string> files, ICollection<string> folders) GetAdditionalFilesByCommentDirectives(
+			SyntaxTree syntaxTree)
 		{
 			ICollection<string> additionalFiles = new List<string>();
 			ICollection<string> additionalDirectories = new List<string>();
@@ -224,8 +228,10 @@
 			SyntaxNode syntaxNode = syntaxTree.GetRoot();
 
 			List<string> commentDirectives = syntaxNode.DescendantTrivia()
-				.Where(x => x.IsKind(SyntaxKind.SingleLineCommentTrivia)).Select(x => x.ToString().TrimStart('/').Trim())
-				.Where(x => x.StartsWith("Automaty")).ToList();
+				.Where(x => x.IsKind(SyntaxKind.SingleLineCommentTrivia))
+				.Select(x => x.ToString().TrimStart('/').Trim())
+				.Where(x => x.StartsWith("Automaty"))
+				.ToList();
 
 			foreach (string commentDirective in commentDirectives)
 			{

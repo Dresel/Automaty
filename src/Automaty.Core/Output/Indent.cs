@@ -1,8 +1,9 @@
 namespace Automaty.Core.Output
 {
 	using System;
+	using Automaty.Common.Output;
 
-	public class Indent : IDisposable
+	public class Indent : IIndent
 	{
 		public Indent(FileWriter fileWriter) : this(fileWriter, fileWriter.IndentLevel + 1)
 		{
@@ -16,11 +17,11 @@ namespace Automaty.Core.Output
 			FileWriter.IndentLevel = indentLevel;
 		}
 
-		public FileWriter FileWriter { get; set; }
-
 		public int IndentLevel { get; set; }
 
 		protected bool Disposed { get; set; }
+
+		protected FileWriter FileWriter { get; set; }
 
 		public void Dispose()
 		{

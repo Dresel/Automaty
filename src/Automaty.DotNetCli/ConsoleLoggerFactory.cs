@@ -1,6 +1,6 @@
 ﻿namespace Automaty.DotNetCli
 {
-	using Automaty.Core.Logging;
+	using Automaty.Common.Logging;
 
 	public class ConsoleLoggerFactory : ILoggerFactory
 	{

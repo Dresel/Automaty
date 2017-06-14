@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+	<PropertyGroup>
+		<Version>1.0.0-alpha1</Version>
+		<PackageId>Automaty.Common</PackageId>
+		<Description>The interface library for Automaty - a .NET Core based code automation tool for .NET Core projects.</Description>
+		<PackageTags>CodeGeneration CodeGen T4</PackageTags>
+		<PackageProjectUrl>https://github.com/Dresel/Automaty</PackageProjectUrl>
+		<PackageLicenseUrl>https://github.com/Dresel/Automaty/blob/master/LICENSE.md</PackageLicenseUrl>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/Dresel/Automaty.git</RepositoryUrl>
+		<Authors>Christopher Dresel</Authors>
+		<Company>Christopher Dresel</Company>
+		<PackageOutputPath>..\..\.nuget\packages\Automaty.Common</PackageOutputPath>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<TargetFrameworks Condition="'$(OS)' == 'Windows_NT'">netstandard1.3;net45</TargetFrameworks>
+		<TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard1.3</TargetFrameworks>
+	</PropertyGroup>
+</Project>

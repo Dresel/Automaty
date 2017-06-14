@@ -4,7 +4,7 @@
 		<TargetFramework>netcoreapp1.0</TargetFramework>
 		<AssemblyName>dotnet-automaty</AssemblyName>
 
-		<Version>1.0.0-alpha2</Version>
+		<Version>1.0.0-alpha3</Version>
 		<PackageType>DotNetCliTool</PackageType>
 		<Description>The command-line interface (CLI) for Automaty - a .NET Core based code automation tool for .NET Core projects.</Description>
 		<PackageId>Automaty.DotNetCli</PackageId>
@@ -20,7 +20,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Automaty.Core" Version="1.0.0-alpha2" />
+		<ProjectReference Include="..\Automaty.Core\Automaty.Core.csproj" />
 		<PackageReference Include="Microsoft.Extensions.CommandLineUtils" Version="1.1.0" />
 	</ItemGroup>
 </Project>

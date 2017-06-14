@@ -4,6 +4,7 @@
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
+	using Automaty.Common.Logging;
 	using Automaty.Core.Logging;
 	using Microsoft.Build.Evaluation;
 	using NuGet.LibraryModel;
@@ -58,9 +59,8 @@
 			}
 
 			LockFile lockFile = lockFileFormat.Read(lockFileFilePath);
-			LockFileTarget lockFileTarget =
-				lockFile.GetTarget(NuGetUtils.ParseFrameworkName(project.GetPropertyValue(PropertyNames.TargetFramework)),
-					string.Empty);
+			LockFileTarget lockFileTarget = lockFile.GetTarget(
+				NuGetUtils.ParseFrameworkName(project.GetPropertyValue(PropertyNames.TargetFramework)), string.Empty);
 
 			NuGetPackageResolver nuGetPackageResolver =
 				NuGetPackageResolver.CreateResolver(lockFile, Path.GetDirectoryName(projectFilePath));

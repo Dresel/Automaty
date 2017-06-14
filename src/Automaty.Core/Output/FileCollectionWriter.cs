@@ -3,34 +3,36 @@
 	using System;
 	using System.Collections.Generic;
 	using System.IO;
+	using Automaty.Common.Logging;
+	using Automaty.Common.Output;
 	using Automaty.Core.Logging;
 
-	public class FileCollectionWriter : IDisposable
+	public class FileCollectionWriter : IFileCollectionWriter
 	{
-		public FileCollectionWriter() : this(new NullLogger<FileCollectionWriter>())
+		public FileCollectionWriter() : this(new NullLogger<IFileCollectionWriter>())
 		{
 		}
 
-		public FileCollectionWriter(ILogger<FileCollectionWriter> logger)
+		public FileCollectionWriter(ILogger<IFileCollectionWriter> logger)
 		{
 			Logger = logger;
 		}
 
-		public FileWriter Default => this[DefaultFilePath];
+		public IFileWriter Default => this[DefaultFilePath];
 
-		public Dictionary<string, FileWriter> Files { get; } = new Dictionary<string, FileWriter>();
+		public IDictionary<string, IFileWriter> Files { get; } = new Dictionary<string, IFileWriter>();
 
 		public string CurrentFolder { get; set; }
 
 		public string DefaultFilePath { get; set; }
 
-		public ILogger<FileCollectionWriter> Logger { get; set; }
+		public ILogger<IFileCollectionWriter> Logger { get; set; }
 
-		public OutputSettings Settings { get; set; } = new OutputSettings();
+		public IOutputSettings Settings { get; set; } = new OutputSettings();
 
 		protected bool Disposed { get; set; }
 
-		public FileWriter this[string filePath]
+		public IFileWriter this[string filePath]
 		{
 			get
 			{
@@ -41,7 +43,7 @@
 
 				filePath = Path.Combine(CurrentFolder, filePath);
 
-				if (!Files.TryGetValue(filePath, out FileWriter fileWriter))
+				if (!Files.TryGetValue(filePath, out IFileWriter fileWriter))
 				{
 					Directory.CreateDirectory(Path.GetDirectoryName(filePath));
 

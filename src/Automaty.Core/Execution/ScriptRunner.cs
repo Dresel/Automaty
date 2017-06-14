@@ -5,10 +5,12 @@
 	using System.IO;
 	using System.Linq;
 	using System.Reflection;
+	using Automaty.Common.Execution;
+	using Automaty.Common.Logging;
+	using Automaty.Common.Output;
 	using Automaty.Core.Logging;
 	using Microsoft.CodeAnalysis;
 	using Microsoft.CodeAnalysis.Emit;
-
 #if NETSTANDARD1_5
 	using System.Runtime.Loader;
 #endif
@@ -69,10 +71,11 @@
 
 					Logger.WriteDebug("Searching for Automaty hosts.");
 
-					IEnumerable<MethodInfo> methodInfos = assembly.GetTypes().Where(x => x.GetTypeInfo().IsClass)
-						.SelectMany(x => x.GetMethods()).Where(x => x.Name == nameof(IAutomatyHost.Execute) &&
-							(x.GetParameters().Length == 0 || x.GetParameters().Length == 1 &&
-								x.GetParameters().Single().ParameterType == typeof(ScriptContext)));
+					IEnumerable<MethodInfo> methodInfos = assembly.GetTypes()
+						.Where(x => x.GetTypeInfo().IsClass)
+						.SelectMany(x => x.GetMethods())
+						.Where(x => x.Name == nameof(IAutomatyHost.Execute) && (x.GetParameters().Length == 0 ||
+							x.GetParameters().Length == 1 && x.GetParameters().Single().ParameterType == typeof(IScriptContext)));
 
 					foreach (MethodInfo methodInfo in methodInfos)
 					{
@@ -81,7 +84,8 @@
 							Logger.WriteInfo($"Invoking {methodInfo.DeclaringType}->{methodInfo.Name}.");
 
 							methodInfo.Invoke(
-								methodInfo.IsStatic ? methodInfo.DeclaringType : Activator.CreateInstance(methodInfo.DeclaringType), new object[] { });
+								methodInfo.IsStatic ? methodInfo.DeclaringType : Activator.CreateInstance(methodInfo.DeclaringType),
+								new object[] { });
 						}
 						else
 						{

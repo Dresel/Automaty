@@ -1,5 +1,7 @@
 ﻿namespace Automaty.Core.Logging
 {
+	using Automaty.Common.Logging;
+
 	public class NullLogger<T> : ILogger<T>
 	{
 		public void WriteDebug(string text)

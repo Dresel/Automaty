@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
 	<PropertyGroup>
-		<Version>1.0.0-alpha2</Version>
+		<Version>1.0.0-alpha3</Version>
 		<PackageId>Automaty.Core</PackageId>
 		<Description>The core library for Automaty - a .NET Core based code automation tool for .NET Core projects.</Description>
 		<PackageTags>CodeGeneration CodeGen T4</PackageTags>
@@ -26,5 +26,9 @@
 		<PackageReference Include="Microsoft.NETCore.Platforms" Version="1.1.0" />
 		<PackageReference Include="NuGet.ProjectModel" Version="4.0.0" />
 		<PackageReference Include="NuGet.Versioning" Version="4.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Automaty.Common\Automaty.Common.csproj" />
 	</ItemGroup>
 </Project>

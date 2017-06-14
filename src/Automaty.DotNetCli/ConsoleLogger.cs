@@ -1,7 +1,7 @@
 ﻿namespace Automaty.DotNetCli
 {
 	using System;
-	using Automaty.Core.Logging;
+	using Automaty.Common.Logging;
 
 	public class ConsoleLogger<T> : ILogger<T>
 	{

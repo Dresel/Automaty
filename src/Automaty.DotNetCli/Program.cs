@@ -1,10 +1,9 @@
 ﻿namespace Automaty.DotNetCli
 {
 	using System.Collections.Generic;
-	using System.IO;
 	using System.Linq;
+	using Automaty.Common.Logging;
 	using Automaty.Core;
-	using Automaty.Core.Logging;
 	using Microsoft.Extensions.CommandLineUtils;
 
 	internal class Program
@@ -45,9 +44,7 @@
 					}
 					else
 					{
-						return RunAutomaty(sourceFilePaths.Values, projectFilePath.Value(), isVerboseOutput.HasValue())
-							? 0
-							: -1;
+						return RunAutomaty(sourceFilePaths.Values, projectFilePath.Value(), isVerboseOutput.HasValue()) ? 0 : -1;
 					}
 
 					return 0;

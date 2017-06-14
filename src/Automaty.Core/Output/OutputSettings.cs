@@ -1,6 +1,8 @@
 ﻿namespace Automaty.Core.Output
 {
-	public class OutputSettings
+	using Automaty.Common.Output;
+
+	public class OutputSettings : IOutputSettings
 	{
 		public string IndentString { get; set; } = "    ";
 	}

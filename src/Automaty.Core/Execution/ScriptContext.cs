@@ -2,10 +2,12 @@
 {
 	using System;
 	using System.IO;
+	using Automaty.Common.Logging;
+	using Automaty.Common.Output;
 	using Automaty.Core.Logging;
 	using Automaty.Core.Output;
 
-	public class ScriptContext : IDisposable
+	public class ScriptContext : IScriptContext
 	{
 		public ScriptContext(string scriptFilePath, string projectFilePath) : this(scriptFilePath, projectFilePath,
 			new NullLoggerFactory())
@@ -17,15 +19,16 @@
 			ScriptFilePath = scriptFilePath;
 			ProjectFilePath = projectFilePath;
 
-			Output = new FileCollectionWriter(loggerFactory.CreateLogger<FileCollectionWriter>())
+			Output = new FileCollectionWriter(loggerFactory.CreateLogger<IFileCollectionWriter>())
 			{
 				CurrentFolder = Path.GetDirectoryName(scriptFilePath),
 				DefaultFilePath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(scriptFilePath),
-					$"{Path.GetFileNameWithoutExtension(scriptFilePath)}.generated.cs")).ToPlatformSpecificPath()
+						$"{Path.GetFileNameWithoutExtension(scriptFilePath)}.generated.cs"))
+					.ToPlatformSpecificPath()
 			};
 		}
 
-		public FileCollectionWriter Output { get; protected set; }
+		public IFileCollectionWriter Output { get; protected set; }
 
 		public string ProjectFilePath { get; protected set; }
 

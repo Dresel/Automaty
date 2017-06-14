@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
 	<PropertyGroup>
-		<Version>1.0.0-alpha2</Version>
+		<Version>1.0.0-alpha3</Version>
 		<PackageId>Automaty.MSBuild</PackageId>
 		<Description>The MSBuild task for Automaty - a .NET Core based code automation tool for .NET Core projects.</Description>
 		<PackageTags>CodeGeneration MSBuild CodeGen T4 </PackageTags>
@@ -38,7 +38,10 @@
 	</Target>
 
 	<ItemGroup>
-		<PackageReference Include="Automaty.DotNetCli" Version="1.0.0-alpha2" />
 		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.3.0-preview-000117-01" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Automaty.Common\Automaty.Common.csproj" />
 	</ItemGroup>
 </Project>

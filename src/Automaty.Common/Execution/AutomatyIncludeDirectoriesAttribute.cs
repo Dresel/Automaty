@@ -1,4 +1,4 @@
-﻿namespace Automaty.Core.Execution
+﻿namespace Automaty.Common.Execution
 {
 	using System;
 

@@ -3,8 +3,9 @@
 	using System;
 	using System.IO;
 	using System.Threading.Tasks;
+	using Automaty.Common.Output;
 
-	public class FileWriter : IDisposable
+	public class FileWriter : IFileWriter
 	{
 		public FileWriter(string filePath)
 		{
@@ -13,7 +14,7 @@
 
 		public int IndentLevel { get; set; }
 
-		public OutputSettings OutputSettings { get; set; } = new OutputSettings();
+		public IOutputSettings OutputSettings { get; set; } = new OutputSettings();
 
 		protected TextWriter TextWriter { get; }
 
@@ -25,24 +26,24 @@
 			GC.SuppressFinalize(this);
 		}
 
-		public Indent WithIndent()
+		public IIndent WithIndent()
 		{
 			return new Indent(this);
 		}
 
-		public Indent WithIndent(int indentLevel)
+		public IIndent WithIndent(int indentLevel)
 		{
 			return new Indent(this, indentLevel);
 		}
 
-		public FileWriter WriteLine(string line)
+		public IFileWriter WriteLine(string line)
 		{
 			TextWriter.WriteLine(line);
 
 			return this;
 		}
 
-		public async Task<FileWriter> WriteLineAsync(string line)
+		public async Task<IFileWriter> WriteLineAsync(string line)
 		{
 			await TextWriter.WriteLineAsync(line);
 

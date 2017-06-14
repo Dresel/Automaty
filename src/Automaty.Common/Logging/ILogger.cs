@@ -1,4 +1,4 @@
-﻿namespace Automaty.Core.Logging
+﻿namespace Automaty.Common.Logging
 {
 	public interface ILogger<T>
 	{
