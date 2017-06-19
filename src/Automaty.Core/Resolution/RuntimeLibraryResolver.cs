@@ -27,6 +27,8 @@
 		{
 			Logger.WriteDebug("Reading project file.");
 
+			projectFilePath = Path.GetFullPath(projectFilePath.ToPlatformSpecificPath());
+
 			Environment.SetEnvironmentVariable(MSBuildFinder.MSBuildEnvironmentVariableName, MSBuildFinder.Find());
 
 			ProjectCollection projectCollection = new ProjectCollection();
