@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<Version>1.0.0-alpha1</Version>
 		<PackageId>Automaty.Common</PackageId>
-		<Description>The interface library for Automaty - a .NET Core based code automation tool for .NET Core projects.</Description>
+		<Description>The shared library for Automaty - a .NET Core based code automation tool for .NET Core projects.</Description>
 		<PackageTags>CodeGeneration CodeGen T4</PackageTags>
 		<PackageProjectUrl>https://github.com/Dresel/Automaty</PackageProjectUrl>
 		<PackageLicenseUrl>https://github.com/Dresel/Automaty/blob/master/LICENSE.md</PackageLicenseUrl>
