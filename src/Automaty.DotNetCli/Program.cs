@@ -6,20 +6,9 @@
 	using Automaty.Core;
 	using Microsoft.Extensions.CommandLineUtils;
 
-	internal class Program
+	public class Program
 	{
-		public static bool RunAutomaty(IEnumerable<string> sourceFilePaths, string projectFilePath, bool isVerbose)
-		{
-			ILoggerFactory loggerFactory = new ConsoleLoggerFactory
-			{
-				IsVerbose = isVerbose
-			};
-
-			AutomatyRunner automaty = new AutomatyRunner(loggerFactory);
-			return automaty.Execute(sourceFilePaths, projectFilePath);
-		}
-
-		private static int Main(string[] args)
+		public static int Main(string[] args)
 		{
 			CommandLineApplication app = new CommandLineApplication(false);
 
@@ -61,6 +50,17 @@
 			app.Execute(args.Except(new[] { "--" }).ToArray());
 
 			return 0;
+		}
+
+		private static bool RunAutomaty(IEnumerable<string> sourceFilePaths, string projectFilePath, bool isVerbose)
+		{
+			ILoggerFactory loggerFactory = new ConsoleLoggerFactory
+			{
+				IsVerbose = isVerbose
+			};
+
+			AutomatyRunner automaty = new AutomatyRunner(loggerFactory);
+			return automaty.Execute(sourceFilePaths, projectFilePath);
 		}
 	}
 }
