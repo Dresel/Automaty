@@ -154,9 +154,9 @@ To enable verbose output for the MSBuild task, set
 If you like the nested file structure used by `T4` templates, you could add something like this to your project file:
 
 ```xml
-	<ItemGroup>
-		<Compile Update="HelloWorld.*.cs">
-			<DependentUpon>HelloWorld.cs</DependentUpon>
-		</Compile>
-	</ItemGroup>
+<ItemGroup>
+    <Compile Update="HelloWorld.*.cs">
+        <DependentUpon>HelloWorld.cs</DependentUpon>
+    </Compile>
+</ItemGroup>
 ```
