@@ -8,12 +8,12 @@
 	using Automaty.Common.Execution;
 	using Automaty.Common.Logging;
 	using Automaty.Core.Logging;
-	using Automaty.Core.Resolution;
 	using Microsoft.CodeAnalysis;
 	using Microsoft.CodeAnalysis.CSharp;
 	using Microsoft.CodeAnalysis.CSharp.Syntax;
 	using Microsoft.CodeAnalysis.Scripting;
 	using Microsoft.CodeAnalysis.Text;
+	using Microsoft.Extensions.DependencyModel;
 
 	public class ScriptCompiler
 	{
@@ -39,11 +39,30 @@
 
 		public ICollection<MetadataReference> MetadataReferences { get; set; }
 
-		public void AddRuntimeLibraries(IEnumerable<RuntimeLibrary> runtimeLibraries)
+		public void AddRuntimeLibraries(IEnumerable<Resolution.RuntimeLibrary> runtimeLibraries)
 		{
-			foreach (RuntimeLibrary runtimeLibrary in runtimeLibraries)
+			Logger.WriteDebug("Adding runtime libraries");
+
+			foreach (Resolution.RuntimeLibrary runtimeLibrary in runtimeLibraries)
 			{
-				MetadataReferences.Add(MetadataReference.CreateFromFile(runtimeLibrary.FilePath));
+				if (DependencyContext.Default.RuntimeLibraries.Any(x => x.Name == runtimeLibrary.Name ||
+					x.Dependencies.Any(dependency => dependency.Name == runtimeLibrary.Name)))
+				{
+					Logger.WriteDebug($"Runtime library '{runtimeLibrary.Name}' already exists in DependencyContext.");
+
+					Assembly assembly = Assembly.Load(new AssemblyName(runtimeLibrary.AssemblyName));
+
+					if (assembly.Location != runtimeLibrary.FilePath)
+					{
+						Logger.WriteDebug($"Adding {assembly.Location} instead of {runtimeLibrary.FilePath}.");
+					}
+
+					MetadataReferences.Add(MetadataReference.CreateFromFile(assembly.Location));
+				}
+				else
+				{
+					MetadataReferences.Add(MetadataReference.CreateFromFile(runtimeLibrary.FilePath));
+				}
 			}
 		}
 

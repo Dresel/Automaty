@@ -85,6 +85,7 @@
 
 					runtimeLibraries.Add(new RuntimeLibrary
 					{
+						Name = library.Name,
 						DirectoryName = Path.GetDirectoryName(filePath),
 						FileName = Path.GetFileName(filePath)
 					});
@@ -125,6 +126,7 @@
 
 				runtimeLibraries.Add(new RuntimeLibrary
 				{
+					Name = assemblyName,
 					DirectoryName = Path.GetDirectoryName(filePath),
 					FileName = Path.GetFileName(filePath)
 				});

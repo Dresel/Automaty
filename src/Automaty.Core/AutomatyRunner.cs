@@ -8,7 +8,8 @@
 	using Automaty.Core.Execution;
 	using Automaty.Core.Logging;
 	using Automaty.Core.Resolution;
-#if NETSTANDARD1_5
+
+#if NETSTANDARD1_6
 	using System.Runtime.Loader;
 #else
 	using System.Reflection;
@@ -54,7 +55,7 @@
 
 					runtimeLibraries = runtimeLibraryResolver.GetRuntimeLibraries(projectFilePath);
 
-#if NETSTANDARD1_5
+#if NETSTANDARD1_6
 					AssemblyLoadContext.Default.Resolving += (assemblyLoadContext, assemblyName) =>
 					{
 						RuntimeLibrary runtimeLibrary = runtimeLibraries.FirstOrDefault(x => x.AssemblyName == assemblyName.Name);

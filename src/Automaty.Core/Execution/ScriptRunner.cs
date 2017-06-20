@@ -11,7 +11,8 @@
 	using Automaty.Core.Logging;
 	using Microsoft.CodeAnalysis;
 	using Microsoft.CodeAnalysis.Emit;
-#if NETSTANDARD1_5
+
+#if NETSTANDARD1_6
 	using System.Runtime.Loader;
 #endif
 
@@ -63,7 +64,7 @@
 
 					Logger.WriteDebug("Loading assembly.");
 
-#if NETSTANDARD1_5
+#if NETSTANDARD1_6
 					Assembly assembly = AssemblyLoadContext.Default.LoadFromStream(msLibrary, msSymbols);
 #else
 					Assembly assembly = Assembly.Load(msLibrary.ToArray(), msSymbols.ToArray());
