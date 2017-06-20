@@ -1,7 +1,5 @@
 ﻿namespace Automaty.HelloWorldNuGet
 {
-	using System.IO;
-	using System.Threading.Tasks;
 	using Automaty.Common.Execution;
 	using Automaty.Common.Output;
 	using Newtonsoft.Json;
