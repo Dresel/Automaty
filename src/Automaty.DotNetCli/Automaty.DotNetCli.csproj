@@ -8,7 +8,7 @@
 		<PackageType>DotNetCliTool</PackageType>
 		<Description>The command-line interface (CLI) for Automaty - a .NET Core based code automation tool for .NET Core projects.</Description>
 		<PackageId>Automaty.DotNetCli</PackageId>
-		<PackageTags>CodeGeneration dotnet-cli CodeGen T4 </PackageTags>
+		<PackageTags>CodeGeneration dotnet-cli CodeGen T4</PackageTags>
 		<PackageProjectUrl>https://github.com/Dresel/Automaty</PackageProjectUrl>
 		<PackageLicenseUrl>https://github.com/Dresel/Automaty/blob/master/LICENSE.md</PackageLicenseUrl>
 		<RepositoryType>git</RepositoryType>
