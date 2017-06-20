@@ -6,7 +6,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Automaty.Common" Version="1.0.0-alpha1" />
-		<DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.0-alpha3" />
+		<DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.0-alpha4" />
 		<PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
 	</ItemGroup>
 

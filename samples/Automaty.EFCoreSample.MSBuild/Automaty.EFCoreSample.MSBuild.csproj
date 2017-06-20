@@ -22,7 +22,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.0-alpha3" />
+		<DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.0-alpha4" />
 	</ItemGroup>
 
 </Project>
