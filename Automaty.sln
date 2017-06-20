@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automaty.HelloWorld", "samp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automaty.HelloWorldNuGet", "samples\Automaty.HelloWorldNuGet\Automaty.HelloWorldNuGet.csproj", "{601FABEF-FC41-42FD-95D0-C4E13212C246}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automaty.HelloWorld.MSBuild", "samples\Automaty.HelloWorld.MSBuild\Automaty.HelloWorld.MSBuild.csproj", "{9596E161-F6A4-4A75-AE82-8E45F65499C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{601FABEF-FC41-42FD-95D0-C4E13212C246}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{601FABEF-FC41-42FD-95D0-C4E13212C246}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{601FABEF-FC41-42FD-95D0-C4E13212C246}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9596E161-F6A4-4A75-AE82-8E45F65499C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9596E161-F6A4-4A75-AE82-8E45F65499C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9596E161-F6A4-4A75-AE82-8E45F65499C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9596E161-F6A4-4A75-AE82-8E45F65499C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,5 +73,6 @@ Global
 		{E2EB09E7-0FCB-41F7-9F7C-22E75593D8E8} = {874F5886-0CC4-41FB-8499-55A489F9E06E}
 		{9F69ECDE-7BBD-4F4E-A5FD-DCCDDDE4E82A} = {9D11DE25-2EFE-4C76-8A16-9DC3D5445E6A}
 		{601FABEF-FC41-42FD-95D0-C4E13212C246} = {9D11DE25-2EFE-4C76-8A16-9DC3D5445E6A}
+		{9596E161-F6A4-4A75-AE82-8E45F65499C7} = {9D11DE25-2EFE-4C76-8A16-9DC3D5445E6A}
 	EndGlobalSection
 EndGlobal
