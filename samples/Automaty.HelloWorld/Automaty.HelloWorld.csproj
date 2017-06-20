@@ -4,16 +4,6 @@
 		<TargetFramework>netstandard1.3</TargetFramework>
 	</PropertyGroup>
 
-	<PropertyGroup>
-		<AutomatyIsVerbose>True</AutomatyIsVerbose>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<Compile Update="Repository.Automaty.*.cs">
-			<DependentUpon>Repository.Automaty.cs</DependentUpon>
-		</Compile>
-	</ItemGroup>
-
 	<ItemGroup>
 		<PackageReference Include="Automaty.Common" Version="1.0.0-alpha1" />
 		<DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.0-alpha3" />
