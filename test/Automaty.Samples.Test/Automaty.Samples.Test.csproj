@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp1.1</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Include="..\..\src\Automaty.Core\StringExtension.cs" Link="StringExtension.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
+		<PackageReference Include="MSTest.TestAdapter" Version="1.1.11" />
+		<PackageReference Include="MSTest.TestFramework" Version="1.1.11" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+	</ItemGroup>
+
+	<!-- Delete old sample project files -->
+	<Target Name="DeleteSampleDirectory" BeforeTargets="Build">
+		<RemoveDir Directories="$(TargetDir)\samples" />
+	</Target>
+
+	<!-- Copy sample projects, except Automaty generated files and bin / obj directory-->
+	<Target Name="CopySampleProjects" BeforeTargets="Build" DependsOnTargets="DeleteSampleDirectory">
+		<CreateItem Include="$(MSBuildThisFileDirectory)\..\..\samples\**\*.*" Exclude="$(MSBuildThisFileDirectory)\..\..\samples\**\*.generated.*;$(MSBuildThisFileDirectory)\..\..\samples\**\helloworld*.txt;$(MSBuildThisFileDirectory)\..\..\samples\**\helloworld.json;$(MSBuildThisFileDirectory)\..\..\samples\**\helloworld.csv;$(MSBuildThisFileDirectory)\..\..\samples\*\bin\**;$(MSBuildThisFileDirectory)\..\..\samples\*\obj\**">
+			<Output TaskParameter="Include" ItemName="FilesToCopy" />
+		</CreateItem>
+
+		<Copy SourceFiles="@(FilesToCopy)" DestinationFiles="@(FilesToCopy->'$(TargetDir)\samples\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+	</Target>
+
+
+</Project>
