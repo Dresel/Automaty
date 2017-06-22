@@ -1,4 +1,4 @@
-﻿namespace Automaty.HelloWorldNuGet
+﻿namespace Automaty.Samples.HelloWorld.NuGet
 {
 	using Automaty.Common.Execution;
 	using Automaty.Common.Output;

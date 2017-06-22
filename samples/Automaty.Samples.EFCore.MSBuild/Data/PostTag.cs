@@ -1,4 +1,4 @@
-namespace Automaty.EFCoreSample.MSBuild.Data
+namespace Automaty.Samples.EFCore.MSBuild.Data
 {
 	public class PostTag
 	{

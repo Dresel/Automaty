@@ -1,4 +1,4 @@
-﻿namespace Automaty.EFCoreSample.MSBuild
+﻿namespace Automaty.Samples.EFCore.MSBuild
 {
 	public static class StringExtensions
 	{

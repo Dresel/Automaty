@@ -1,10 +1,10 @@
-﻿namespace Automaty.EFCoreSample.MSBuild
+﻿namespace Automaty.Samples.EFCore.MSBuild
 {
 	using System;
 	using System.IO;
 	using Automaty.Common.Execution;
 	using Automaty.Common.Output;
-	using Automaty.EFCoreSample.MSBuild.Data;
+	using Automaty.Samples.EFCore.MSBuild.Data;
 	using Microsoft.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore.Metadata;
 	using SmartFormat;
@@ -41,7 +41,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Automaty.EFCoreSample.MSBuild
+namespace Automaty.Samples.EFCore.MSBuild
 {{
 	using System.Linq;
 

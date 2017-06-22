@@ -1,9 +1,8 @@
-﻿namespace Automaty.HelloWorld.MSBuild
+﻿namespace Automaty.Samples.HelloWorld.MSBuild
 {
-	using Automaty.Common.Execution;
 	using Automaty.Common.Output;
 
-	public class HelloWorldByConvention : IAutomatyHost
+	public class HelloWorld
 	{
 		public void Execute(IScriptContext context)
 		{

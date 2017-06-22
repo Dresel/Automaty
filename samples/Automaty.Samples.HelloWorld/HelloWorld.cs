@@ -1,4 +1,4 @@
-﻿namespace Automaty.HelloWorld
+﻿namespace Automaty.Samples.HelloWorld
 {
 	using System.IO;
 
