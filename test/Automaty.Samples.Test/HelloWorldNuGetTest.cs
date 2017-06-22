@@ -1,6 +1,7 @@
 ﻿namespace Automaty.Samples.Test
 {
 	using System;
+	using System.Globalization;
 	using System.IO;
 	using Automaty.Core;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -11,27 +12,6 @@
 		protected const string ProjectDirectoryPath = "./samples/Automaty.Samples.HelloWorld.NuGet/";
 
 		protected const string ProjectFilePath = "Automaty.Samples.HelloWorld.NuGet.csproj";
-
-		[TestMethod]
-		public void AutomatyHelloWorldJsonGenerateFiles()
-		{
-			string sampleProjectDirectoryPath = HelloWorldNuGetTest.ProjectDirectoryPath.ToPlatformSpecificPath();
-			string projectFilePath = HelloWorldNuGetTest.ProjectFilePath;
-
-			string sourceFilePath = "HelloWorldJson.cs";
-			string generatedFilePath = "helloworld.json";
-
-			Helper.AssertSampleProjectDirectoryPathExists(sampleProjectDirectoryPath);
-			Helper.AssertGeneratedFileDoesNotExist(sampleProjectDirectoryPath, generatedFilePath);
-
-			Helper.DotNetRestore(sampleProjectDirectoryPath, projectFilePath);
-			Helper.AutomatyRun(sampleProjectDirectoryPath, $"{sourceFilePath} --project {projectFilePath}");
-
-			Helper.AssertGeneratedFileExists(sampleProjectDirectoryPath, generatedFilePath);
-
-			Assert.AreEqual(File.ReadAllText(Path.Combine(sampleProjectDirectoryPath, generatedFilePath)),
-				$"\"Hello World!\"{Environment.NewLine}");
-		}
 
 		[TestMethod]
 		public void AutomatyHelloWorldCsvGenerateFiles()
@@ -50,8 +30,30 @@
 
 			Helper.AssertGeneratedFileExists(sampleProjectDirectoryPath, generatedFilePath);
 
-			Assert.AreEqual(File.ReadAllText(Path.Combine(sampleProjectDirectoryPath, generatedFilePath)),
-				$"Hello;World;!{Environment.NewLine}");
+			Assert.AreEqual(
+				$"Hello{CultureInfo.CurrentCulture.TextInfo.ListSeparator}World{CultureInfo.CurrentCulture.TextInfo.ListSeparator}!{Environment.NewLine}",
+				File.ReadAllText(Path.Combine(sampleProjectDirectoryPath, generatedFilePath)));
+		}
+
+		[TestMethod]
+		public void AutomatyHelloWorldJsonGenerateFiles()
+		{
+			string sampleProjectDirectoryPath = HelloWorldNuGetTest.ProjectDirectoryPath.ToPlatformSpecificPath();
+			string projectFilePath = HelloWorldNuGetTest.ProjectFilePath;
+
+			string sourceFilePath = "HelloWorldJson.cs";
+			string generatedFilePath = "helloworld.json";
+
+			Helper.AssertSampleProjectDirectoryPathExists(sampleProjectDirectoryPath);
+			Helper.AssertGeneratedFileDoesNotExist(sampleProjectDirectoryPath, generatedFilePath);
+
+			Helper.DotNetRestore(sampleProjectDirectoryPath, projectFilePath);
+			Helper.AutomatyRun(sampleProjectDirectoryPath, $"{sourceFilePath} --project {projectFilePath}");
+
+			Helper.AssertGeneratedFileExists(sampleProjectDirectoryPath, generatedFilePath);
+
+			Assert.AreEqual($"\"Hello World!\"{Environment.NewLine}",
+				File.ReadAllText(Path.Combine(sampleProjectDirectoryPath, generatedFilePath)));
 		}
 	}
 }

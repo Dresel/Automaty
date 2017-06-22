@@ -31,9 +31,8 @@ namespace Automaty.Samples.Test
 			Helper.AssertGeneratedFileExists(sampleProjectDirectoryPath, generatedFilePath1);
 			Helper.AssertGeneratedFileExists(sampleProjectDirectoryPath, generatedFilePath2);
 
-			Assert.AreEqual(File.ReadAllText(Path.Combine(sampleProjectDirectoryPath, generatedFilePath1)), $"// Hello World!{Environment.NewLine}");
-			Assert.AreEqual(File.ReadAllText(Path.Combine(sampleProjectDirectoryPath, generatedFilePath2)), $"// Hello World!{Environment.NewLine}");
-
+			Assert.AreEqual($"// Hello World!{Environment.NewLine}", File.ReadAllText(Path.Combine(sampleProjectDirectoryPath, generatedFilePath1)));
+			Assert.AreEqual($"// Hello World!{Environment.NewLine}", File.ReadAllText(Path.Combine(sampleProjectDirectoryPath, generatedFilePath2)));
 		}
 	}
 }
