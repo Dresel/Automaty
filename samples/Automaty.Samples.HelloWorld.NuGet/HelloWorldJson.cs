@@ -4,7 +4,7 @@
 	using Automaty.Common.Output;
 	using Newtonsoft.Json;
 
-	public class HelloWorld : IAutomatyHost
+	public class HelloWorldJson : IAutomatyHost
 	{
 		public void Execute(IScriptContext context)
 		{
