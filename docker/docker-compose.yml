@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  automaty.samples.test:
+    image: microsoft/dotnet:sdk
+    volumes:
+      - .\..:/src
+    command:
+      - /bin/sh
+      - /src/run-tests.sh
