@@ -13,7 +13,7 @@ namespace Automaty.Samples.Test
 		protected const string ProjectFilePath = "Automaty.Samples.HelloWorld.MSBuild.csproj";
 
 		[TestMethod]
-		public void AutomatyHelloWorldGenerateFiles()
+		public void AutomatyHelloWorldMSBuildGenerateFiles()
 		{
 			string sampleProjectDirectoryPath = HelloWorldMSBuildTest.ProjectDirectoryPath.ToPlatformSpecificPath();
 			string projectFilePath = HelloWorldMSBuildTest.ProjectFilePath;

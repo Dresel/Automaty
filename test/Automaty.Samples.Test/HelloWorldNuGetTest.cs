@@ -14,7 +14,7 @@
 		protected const string ProjectFilePath = "Automaty.Samples.HelloWorld.NuGet.csproj";
 
 		[TestMethod]
-		public void AutomatyHelloWorldCsvGenerateFiles()
+		public void AutomatyHelloWorldNuGetCsvGenerateFiles()
 		{
 			string sampleProjectDirectoryPath = HelloWorldNuGetTest.ProjectDirectoryPath.ToPlatformSpecificPath();
 			string projectFilePath = HelloWorldNuGetTest.ProjectFilePath;
@@ -36,7 +36,7 @@
 		}
 
 		[TestMethod]
-		public void AutomatyHelloWorldJsonGenerateFiles()
+		public void AutomatyHelloWorldNuGetJsonGenerateFiles()
 		{
 			string sampleProjectDirectoryPath = HelloWorldNuGetTest.ProjectDirectoryPath.ToPlatformSpecificPath();
 			string projectFilePath = HelloWorldNuGetTest.ProjectFilePath;
