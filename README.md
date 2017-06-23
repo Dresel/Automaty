@@ -1,5 +1,7 @@
 # Automaty
 
+[![Build status](https://ci.appveyor.com/api/projects/status/lirp1ejbortnbmf7?svg=true)](https://ci.appveyor.com/project/Dresel/automaty)
+
 Automaty is a .NET Core based code automation tool for .NET Core projects. It's similiar to and inspired by T4, [Scripty](https://github.com/daveaglick/Scripty) and [dotnet-script](https://github.com/filipw/dotnet-script). What distinguishes Automaty from the the rest? It's the combination of the following points:
 
 * It supports (only) .NET Core based projects
