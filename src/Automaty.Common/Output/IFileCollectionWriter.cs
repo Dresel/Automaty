@@ -2,19 +2,16 @@
 {
 	using System;
 	using System.Collections.Generic;
-	using Automaty.Common.Logging;
 
 	public interface IFileCollectionWriter : IDisposable
 	{
-		IFileWriter Default { get; }
+		IFileWriter Current { get; }
+
+		IGeneratedFileName CurrentGeneratedFileName { get; }
 
 		IDictionary<string, IFileWriter> Files { get; }
 
 		string CurrentFolder { get; set; }
-
-		string DefaultFilePath { get; set; }
-
-		ILogger<IFileCollectionWriter> Logger { get; set; }
 
 		IOutputSettings Settings { get; set; }
 

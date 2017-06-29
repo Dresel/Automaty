@@ -16,16 +16,20 @@
 
 		public ScriptContext(string scriptFilePath, string projectFilePath, ILoggerFactory loggerFactory)
 		{
-			ScriptFilePath = Path.GetFullPath(scriptFilePath.ToPlatformSpecificPath());
-			ProjectFilePath = string.IsNullOrEmpty(projectFilePath) ? projectFilePath : Path.GetFullPath(projectFilePath.ToPlatformSpecificPath());
+			Logger = loggerFactory.CreateLogger<IScriptContext>();
 
-			Output = new FileCollectionWriter(loggerFactory.CreateLogger<IFileCollectionWriter>())
+			ScriptFilePath = Path.GetFullPath(scriptFilePath.ToPlatformSpecificPath());
+			ProjectFilePath = string.IsNullOrEmpty(projectFilePath)
+				? projectFilePath
+				: Path.GetFullPath(projectFilePath.ToPlatformSpecificPath());
+
+			Output = new FileCollectionWriter(ScriptFilePath, loggerFactory.CreateLogger<IFileCollectionWriter>())
 			{
-				CurrentFolder = Path.GetDirectoryName(ScriptFilePath),
-				DefaultFilePath = Path.Combine(Path.GetDirectoryName(ScriptFilePath),
-					$"{Path.GetFileNameWithoutExtension(ScriptFilePath)}.generated.cs")
+				CurrentFolder = Path.GetDirectoryName(ScriptFilePath)
 			};
 		}
+
+		public ILogger<IScriptContext> Logger { get; set; }
 
 		public IFileCollectionWriter Output { get; protected set; }
 

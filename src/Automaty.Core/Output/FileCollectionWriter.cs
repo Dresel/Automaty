@@ -9,28 +9,29 @@
 
 	public class FileCollectionWriter : IFileCollectionWriter
 	{
-		public FileCollectionWriter() : this(new NullLogger<IFileCollectionWriter>())
+		public FileCollectionWriter(string scriptFilePath) : this(scriptFilePath, new NullLogger<IFileCollectionWriter>())
 		{
 		}
 
-		public FileCollectionWriter(ILogger<IFileCollectionWriter> logger)
+		public FileCollectionWriter(string scriptFilePath, ILogger<IFileCollectionWriter> logger)
 		{
 			Logger = logger;
+			CurrentGeneratedFileName = new GeneratedFileName(scriptFilePath);
 		}
 
-		public IFileWriter Default => this[DefaultFilePath];
+		public IFileWriter Current => this[CurrentGeneratedFileName.CombinedFileName];
+
+		public IGeneratedFileName CurrentGeneratedFileName { get; }
 
 		public IDictionary<string, IFileWriter> Files { get; } = new Dictionary<string, IFileWriter>();
 
 		public string CurrentFolder { get; set; }
 
-		public string DefaultFilePath { get; set; }
-
-		public ILogger<IFileCollectionWriter> Logger { get; set; }
-
 		public IOutputSettings Settings { get; set; } = new OutputSettings();
 
 		protected bool Disposed { get; set; }
+
+		protected ILogger<IFileCollectionWriter> Logger { get; set; }
 
 		public IFileWriter this[string filePath]
 		{
@@ -41,7 +42,8 @@
 					throw new ObjectDisposedException(nameof(FileCollectionWriter));
 				}
 
-				filePath = Path.Combine(CurrentFolder, filePath);
+				filePath = Path.GetFullPath(Path.Combine(CurrentFolder.ToPlatformSpecificPath(),
+					filePath.ToPlatformSpecificPath()));
 
 				if (!Files.TryGetValue(filePath, out IFileWriter fileWriter))
 				{
