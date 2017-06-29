@@ -7,8 +7,10 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.2" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="1.1.2" />
-		<PackageReference Include="Automaty.MSBuild" Version="1.0.0-alpha3" />
 		<PackageReference Include="SmartFormat.NET" Version="2.0.0" />
+
+		<PackageReference Include="Automaty.MSBuild" Version="1.0.0-alpha4" />
+		<DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.0-alpha5" />
 	</ItemGroup>
 
 	<PropertyGroup>
@@ -19,10 +21,6 @@
 		<Compile Update="Repository.Automaty.*.cs">
 			<DependentUpon>Repository.Automaty.cs</DependentUpon>
 		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.0-alpha4" />
 	</ItemGroup>
 
 </Project>

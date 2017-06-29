@@ -7,7 +7,7 @@
 	{
 		public void Execute(IScriptContext context)
 		{
-			context.Output.Default.WriteLine("// Hello World!");
+			context.Output.Current.WriteLine("// Hello World!");
 		}
 	}
 }

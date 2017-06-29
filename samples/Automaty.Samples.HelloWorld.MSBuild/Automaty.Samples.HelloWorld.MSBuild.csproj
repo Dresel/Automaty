@@ -5,15 +5,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Automaty.MSBuild" Version="1.0.0-alpha4" />
+		<DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.0-alpha5" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<AutomatyFile Include="HelloWorld.cs" />
 		
 		<!-- Only needed if you overwrite AutomatyFile by hand -->
 		<AutomatyFile Include="**\*.Automaty.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Automaty.MSBuild" Version="1.0.0-alpha3" />
-		<DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.0-alpha4" />
 	</ItemGroup>
 
 	<PropertyGroup>
