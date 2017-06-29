@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
 	<PropertyGroup>
-		<Version>1.0.0-alpha3</Version>
+		<Version>1.0.0-alpha4</Version>
 		<PackageId>Automaty.MSBuild</PackageId>
 		<Description>The MSBuild task for Automaty - a .NET Core based code automation tool for .NET Core projects.</Description>
 		<PackageTags>CodeGeneration MSBuild CodeGen T4</PackageTags>
