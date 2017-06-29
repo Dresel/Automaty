@@ -102,7 +102,6 @@
 
 			ICollection<RuntimeLibrary> runtimeLibraries = new List<RuntimeLibrary>();
 
-			string outputPath = project.GetProperty(PropertyNames.OutputPath).EvaluatedValue;
 			ICollection<ProjectItem> projectItems = project.GetItems(ItemNames.ProjectReference);
 
 			// Add project references
@@ -117,9 +116,10 @@
 					continue;
 				}
 
+				string outputPath = referencedProject.GetProperty(PropertyNames.OutputPath).EvaluatedValue;
 				string assemblyName = referencedProject.GetProperty(PropertyNames.AssemblyName).EvaluatedValue;
 
-				string filePath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(projectFilePath), outputPath,
+				string filePath = Path.GetFullPath(Path.Combine(referencedProject.DirectoryPath, outputPath,
 					$"{assemblyName}.dll"));
 
 				Logger.WriteDebug($"Adding \"{filePath}\".");
