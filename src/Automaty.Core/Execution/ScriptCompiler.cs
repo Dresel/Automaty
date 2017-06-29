@@ -263,25 +263,25 @@
 				switch (strings[1].ToLower())
 				{
 					case "includefile":
-						additionalFiles.Add(strings[2]);
+						additionalFiles.Add(strings[2].Trim());
 						break;
 
 					case "includefiles":
 						foreach (string additionalFilePath in strings[2].Split(';'))
 						{
-							additionalFiles.Add(additionalFilePath);
+							additionalFiles.Add(additionalFilePath.Trim());
 						}
 
 						break;
 
 					case "includedirectory":
-						additionalDirectories.Add(strings[2]);
+						additionalDirectories.Add(strings[2].Trim());
 						break;
 
 					case "includedirectories":
 						foreach (string additionalDirectoryPath in strings[2].Split(';'))
 						{
-							additionalDirectories.Add(additionalDirectoryPath);
+							additionalDirectories.Add(additionalDirectoryPath.Trim());
 						}
 
 						break;
