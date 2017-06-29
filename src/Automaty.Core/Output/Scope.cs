@@ -1,18 +1,25 @@
-namespace Automaty.Core.Output
+﻿namespace Automaty.Core.Output
 {
 	using System;
 	using Automaty.Common.Output;
 
-	public class Indent : IIndent
+	public class Scope : IIndent
 	{
-		public Indent(FileWriter fileWriter) : this(fileWriter, fileWriter.IndentLevel + 1)
+		public Scope(FileWriter fileWriter, string header) : this(fileWriter, header, fileWriter.IndentLevel + 1)
 		{
 		}
 
-		public Indent(FileWriter fileWriter, int indentLevel)
+		public Scope(FileWriter fileWriter, string header, int indentLevel)
 		{
 			FileWriter = fileWriter;
 			IndentLevel = FileWriter.IndentLevel;
+
+			if (!string.IsNullOrEmpty(header))
+			{
+				FileWriter.WriteLine(header);
+			}
+
+			FileWriter.WriteLine("{");
 
 			FileWriter.IndentLevel = indentLevel;
 		}
@@ -39,6 +46,7 @@ namespace Automaty.Core.Output
 			if (disposing)
 			{
 				FileWriter.IndentLevel = IndentLevel;
+				FileWriter.WriteLine("}");
 			}
 
 			Disposed = true;

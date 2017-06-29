@@ -13,8 +13,16 @@
 
 		IIndent WithIndent(int indentLevel);
 
-		IFileWriter WriteLine(string line);
+		IFileWriter WriteLine();
 
-		Task<IFileWriter> WriteLineAsync(string line);
+		IFileWriter WriteLine(string value);
+
+		Task<IFileWriter> WriteLineAsync();
+
+		Task<IFileWriter> WriteLineAsync(string value);
+
+		IIndent WriteScope();
+
+		IIndent WriteScope(string header);
 	}
 }

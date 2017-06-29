@@ -4,6 +4,5 @@
 
 	public interface IIndent : IDisposable
 	{
-		int IndentLevel { get; set; }
 	}
 }

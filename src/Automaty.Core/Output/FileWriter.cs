@@ -36,18 +36,39 @@
 			return new Indent(this, indentLevel);
 		}
 
-		public IFileWriter WriteLine(string line)
+		public IFileWriter WriteLine()
 		{
-			TextWriter.WriteLine(line);
+			TextWriter.WriteLine();
 
 			return this;
 		}
 
-		public async Task<IFileWriter> WriteLineAsync(string line)
+		public IFileWriter WriteLine(string value)
 		{
-			await TextWriter.WriteLineAsync(line);
+			TextWriter.WriteLine(value.Indent(IndentLevel, OutputSettings.IndentString));
 
 			return this;
+		}
+
+		public Task<IFileWriter> WriteLineAsync()
+		{
+			return TextWriter.WriteLineAsync().ContinueWith(x => (IFileWriter)this);
+		}
+
+		public Task<IFileWriter> WriteLineAsync(string value)
+		{
+			return TextWriter.WriteLineAsync(value.Indent(IndentLevel, OutputSettings.IndentString))
+				.ContinueWith(x => (IFileWriter)this);
+		}
+
+		public IIndent WriteScope()
+		{
+			return new Scope(this, string.Empty);
+		}
+
+		public IIndent WriteScope(string header)
+		{
+			return new Scope(this, header);
 		}
 
 		protected virtual void Dispose(bool disposing)
