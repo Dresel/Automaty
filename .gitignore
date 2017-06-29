@@ -262,6 +262,6 @@ __pycache__/
 
 # Ignore Automaty generated files
 **/*.generated.*
-**/hellworld*.txt
-**/hellworld.json
-**/hellworld.csv
+**/helloworld*.txt
+**/helloworld.json
+**/helloworld.csv
