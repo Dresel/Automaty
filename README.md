@@ -13,6 +13,10 @@ Automaty is a .NET Core based code automation tool for .NET Core projects. It's 
 
 Criticism, comments and or suggestions are welcome.
 
+## Automaty based generators
+
+* [EFCoreRepositories](https://github.com/Dresel/Automaty.Generators.EFCoreRepositories) An Automaty based generator for Entity Framework Core repositories. Creates strongly typed repositories based on the IModel of your context. 
+
 ## Getting started
 
 Edit your project file and add the DotNetCli tool as reference to your project (and Automaty.Common if you want to use the `IAutomatyHost` interface):
