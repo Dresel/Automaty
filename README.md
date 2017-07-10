@@ -20,7 +20,7 @@ Edit your project file and add the DotNetCli tool as reference to your project (
 ```xml
 <ItemGroup>
     <PackageReference Include="Automaty.Common" Version="1.0.0-alpha2" />
-    <DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.0-alpha5" />
+    <DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.0-alpha6" />
 </ItemGroup>
 ```
 
@@ -65,7 +65,7 @@ This makes it possible to use libraries like EntityFrameworkCore for code genera
 ```xml
 <ItemGroup>
     <PackageReference Include="Automaty.Common" Version="1.0.0-alpha2" />
-    <DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.0-alpha5" />
+    <DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.0-alpha6" />
 
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
 </ItemGroup>
@@ -120,8 +120,8 @@ If you do not want to use the DotNetCli by hand, you can use the MSBuild task:
 
 ```xml
 <ItemGroup>
-    <PackageReference Include="Automaty.MSBuild" Version="1.0.0-alpha4" />
-    <DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.0-alpha5" />
+    <PackageReference Include="Automaty.MSBuild" Version="1.0.0-alpha5" />
+    <DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.0-alpha6" />
 </ItemGroup>
 ```
 
