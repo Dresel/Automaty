@@ -2,13 +2,16 @@
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Diagnostics;
 	using System.IO;
 	using System.Linq;
 	using System.Reflection;
+	using System.Threading;
 	using Automaty.Common.Execution;
 	using Automaty.Common.Logging;
 	using Automaty.Common.Output;
 	using Automaty.Core.Logging;
+	using Microsoft.Build.Utilities;
 	using Microsoft.CodeAnalysis;
 	using Microsoft.CodeAnalysis.Emit;
 
@@ -72,31 +75,34 @@
 
 					Logger.WriteDebug("Searching for Automaty hosts.");
 
-					IEnumerable<MethodInfo> methodInfos = assembly.GetTypes()
-						.Where(x => x.GetTypeInfo().IsClass)
-						.SelectMany(x => x.GetMethods())
-						.Where(x => x.Name == nameof(IAutomatyHost.Execute) && (x.GetParameters().Length == 0 ||
-							x.GetParameters().Length == 1 && x.GetParameters().Single().ParameterType == typeof(IScriptContext)));
+					IEnumerable<Type> types = assembly.GetTypes().Where(x => x.GetTypeInfo().IsClass);
 
-					foreach (MethodInfo methodInfo in methodInfos)
+					foreach (Type type in types)
 					{
-						if (methodInfo.GetParameters().Length == 0)
-						{
-							Logger.WriteInfo($"Invoking {methodInfo.DeclaringType}->{methodInfo.Name}.");
+						IEnumerable<MethodInfo> methodInfos = type.GetMethods()
+							.Where(x => x.Name == nameof(IAutomatyHost.Execute) && (x.GetParameters().Length == 0 ||
+								x.GetParameters().Length == 1 && x.GetParameters().Single().ParameterType == typeof(IScriptContext)));
 
-							methodInfo.Invoke(
-								methodInfo.IsStatic ? methodInfo.DeclaringType : Activator.CreateInstance(methodInfo.DeclaringType),
-								new object[] { });
-						}
-						else
+						foreach (MethodInfo methodInfo in methodInfos)
 						{
-							using (ScriptContext scriptContext = new ScriptContext(sourceFilePath, projectFilePath, LoggerFactory))
+							if (methodInfo.GetParameters().Length == 0)
 							{
-								Logger.WriteInfo($"Invoking {methodInfo.DeclaringType}->{methodInfo.Name}.");
+								Logger.WriteInfo($"Invoking {type}->{methodInfo.Name}.");
 
 								methodInfo.Invoke(
-									methodInfo.IsStatic ? methodInfo.DeclaringType : Activator.CreateInstance(methodInfo.DeclaringType),
-									new object[] { scriptContext });
+									methodInfo.IsStatic ? type : Activator.CreateInstance(type),
+									new object[] { });
+							}
+							else
+							{
+								using (ScriptContext scriptContext = new ScriptContext(sourceFilePath, projectFilePath, LoggerFactory))
+								{
+									Logger.WriteInfo($"Invoking {type}->{methodInfo.Name}.");
+
+									methodInfo.Invoke(
+										methodInfo.IsStatic ? type : Activator.CreateInstance(type),
+										new object[] { scriptContext });
+								}
 							}
 						}
 					}
