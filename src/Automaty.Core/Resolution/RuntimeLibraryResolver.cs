@@ -118,9 +118,11 @@
 
 				string outputPath = referencedProject.GetProperty(PropertyNames.OutputPath).EvaluatedValue;
 				string assemblyName = referencedProject.GetProperty(PropertyNames.AssemblyName).EvaluatedValue;
+				string targetFrameworks = referencedProject.GetProperty(PropertyNames.TargetFrameworks)?.EvaluatedValue;
 
-				string filePath = Path.GetFullPath(Path.Combine(referencedProject.DirectoryPath, outputPath,
-					$"{assemblyName}.dll"));
+				string filePath = targetFrameworks != null
+					? GetMultiTargetingProjectAssemblyPath(referencedProject.DirectoryPath, targetFrameworks, outputPath, assemblyName)
+					: GetProjectAssemblyPath(referencedProject.DirectoryPath, outputPath, assemblyName);
 
 				Logger.WriteDebug($"Adding \"{filePath}\".");
 
@@ -133,6 +135,28 @@
 			}
 
 			return runtimeLibraries;
+		}
+
+		private string GetMultiTargetingProjectAssemblyPath(string directoryPath, string targetFrameworks, string outputPath, string assemblyName)
+		{
+			string targetFramework = GetSuitableTargetFramework(targetFrameworks);
+			return Path.GetFullPath(Path.Combine(directoryPath, outputPath, targetFramework, $"{assemblyName}.dll"));
+		}
+
+		private string GetProjectAssemblyPath(string directoryPath, string outputPath, string assemblyName)
+		{
+			return Path.GetFullPath(Path.Combine(directoryPath, outputPath, $"{assemblyName}.dll"));
+		}
+
+		private string GetSuitableTargetFramework(string targetFrameworks)
+		{
+			string[] frameworks = targetFrameworks.Split(';');
+
+			string targetFramework = frameworks.FirstOrDefault(f => f.StartsWith("netstandard", StringComparison.OrdinalIgnoreCase)) 
+				?? frameworks.FirstOrDefault(f => f.StartsWith("netcoreapp", StringComparison.OrdinalIgnoreCase)) 
+				?? frameworks[0];
+
+			return targetFramework;
 		}
 	}
 }
