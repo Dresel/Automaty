@@ -42,6 +42,15 @@
 			return runtimeLibraries;
 		}
 
+		protected string GetMultiTargetingProjectAssemblyPath(string directoryPath, string targetFrameworks,
+			string outputPath, string assemblyName)
+		{
+			string targetFramework = GetSuitableTargetFramework(targetFrameworks);
+			Logger.WriteDebug($"Using target framework {targetFramework}.");
+
+			return Path.GetFullPath(Path.Combine(directoryPath, outputPath, targetFramework, $"{assemblyName}.dll"));
+		}
+
 		protected IEnumerable<RuntimeLibrary> GetNugetReferences(string projectFilePath, Project project)
 		{
 			Logger.WriteInfo("Adding nuget references.");
@@ -61,8 +70,9 @@
 			}
 
 			LockFile lockFile = lockFileFormat.Read(lockFileFilePath);
-			LockFileTarget lockFileTarget = lockFile.GetTarget(
-				NuGetUtils.ParseFrameworkName(project.GetPropertyValue(PropertyNames.TargetFramework)), string.Empty);
+			LockFileTarget lockFileTarget =
+				lockFile.GetTarget(NuGetUtils.ParseFrameworkName(project.GetPropertyValue(PropertyNames.TargetFramework)),
+					string.Empty);
 
 			NuGetPackageResolver nuGetPackageResolver =
 				NuGetPackageResolver.CreateResolver(lockFile, Path.GetDirectoryName(projectFilePath));
@@ -95,6 +105,11 @@
 			return runtimeLibraries;
 		}
 
+		protected string GetProjectAssemblyPath(string directoryPath, string outputPath, string assemblyName)
+		{
+			return Path.GetFullPath(Path.Combine(directoryPath, outputPath, $"{assemblyName}.dll"));
+		}
+
 		protected IEnumerable<RuntimeLibrary> GetProjectReferences(string projectFilePath,
 			ProjectCollection projectCollection, Project project)
 		{
@@ -116,13 +131,21 @@
 					continue;
 				}
 
-				string outputPath = referencedProject.GetProperty(PropertyNames.OutputPath).EvaluatedValue;
+				string outputPath = referencedProject.GetProperty(PropertyNames.OutputPath).EvaluatedValue.ToPlatformSpecificPath();
 				string assemblyName = referencedProject.GetProperty(PropertyNames.AssemblyName).EvaluatedValue;
 				string targetFrameworks = referencedProject.GetProperty(PropertyNames.TargetFrameworks)?.EvaluatedValue;
 
-				string filePath = targetFrameworks != null
-					? GetMultiTargetingProjectAssemblyPath(referencedProject.DirectoryPath, targetFrameworks, outputPath, assemblyName)
-					: GetProjectAssemblyPath(referencedProject.DirectoryPath, outputPath, assemblyName);
+				string filePath;
+				if (targetFrameworks != null)
+				{
+					Logger.WriteDebug("Multi targeting project assembly referenced.");
+					filePath = GetMultiTargetingProjectAssemblyPath(referencedProject.DirectoryPath, targetFrameworks, outputPath,
+						assemblyName);
+				}
+				else
+				{
+					filePath = GetProjectAssemblyPath(referencedProject.DirectoryPath, outputPath, assemblyName);
+				}
 
 				Logger.WriteDebug($"Adding \"{filePath}\".");
 
@@ -137,24 +160,13 @@
 			return runtimeLibraries;
 		}
 
-		private string GetMultiTargetingProjectAssemblyPath(string directoryPath, string targetFrameworks, string outputPath, string assemblyName)
-		{
-			string targetFramework = GetSuitableTargetFramework(targetFrameworks);
-			return Path.GetFullPath(Path.Combine(directoryPath, outputPath, targetFramework, $"{assemblyName}.dll"));
-		}
-
-		private string GetProjectAssemblyPath(string directoryPath, string outputPath, string assemblyName)
-		{
-			return Path.GetFullPath(Path.Combine(directoryPath, outputPath, $"{assemblyName}.dll"));
-		}
-
-		private string GetSuitableTargetFramework(string targetFrameworks)
+		protected string GetSuitableTargetFramework(string targetFrameworks)
 		{
 			string[] frameworks = targetFrameworks.Split(';');
 
-			string targetFramework = frameworks.FirstOrDefault(f => f.StartsWith("netstandard", StringComparison.OrdinalIgnoreCase)) 
-				?? frameworks.FirstOrDefault(f => f.StartsWith("netcoreapp", StringComparison.OrdinalIgnoreCase)) 
-				?? frameworks[0];
+			string targetFramework =
+				frameworks.FirstOrDefault(f => f.StartsWith("netstandard", StringComparison.OrdinalIgnoreCase)) ??
+				frameworks.FirstOrDefault(f => f.StartsWith("netcoreapp", StringComparison.OrdinalIgnoreCase)) ?? frameworks[0];
 
 			return targetFramework;
 		}
