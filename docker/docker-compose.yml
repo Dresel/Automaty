@@ -2,7 +2,9 @@ version: '2'
 
 services:
   automaty.samples.test:
-    image: microsoft/dotnet:sdk
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - .\..:/src
     command:

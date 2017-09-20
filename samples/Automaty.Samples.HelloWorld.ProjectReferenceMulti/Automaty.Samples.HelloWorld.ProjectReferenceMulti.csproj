@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Automaty.Common" Version="1.0.0-alpha2" />
+		<DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.0-alpha7" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Automaty.Samples.HelloWorld.ProjectReferenceMulti.ClassLibrary\Automaty.Samples.HelloWorld.ProjectReferenceMulti.ClassLibrary.csproj" />
+	</ItemGroup>
+
+</Project>
