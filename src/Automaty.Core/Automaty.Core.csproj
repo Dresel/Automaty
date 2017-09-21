@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
 	<PropertyGroup>
-		<Version>1.0.0-alpha7</Version>
+		<Version>1.0.0-alpha8</Version>
 		<PackageId>Automaty.Core</PackageId>
 		<Description>The core library for Automaty - a .NET Core based code automation tool for .NET Core projects.</Description>
 		<PackageTags>CodeGeneration CodeGen T4</PackageTags>

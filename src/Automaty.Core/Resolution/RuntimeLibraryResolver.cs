@@ -70,9 +70,17 @@
 			}
 
 			LockFile lockFile = lockFileFormat.Read(lockFileFilePath);
-			LockFileTarget lockFileTarget =
-				lockFile.GetTarget(NuGetUtils.ParseFrameworkName(project.GetPropertyValue(PropertyNames.TargetFramework)),
-					string.Empty);
+
+			string targetFramework = project.GetPropertyValue(PropertyNames.TargetFramework);
+
+			if (string.IsNullOrEmpty(targetFramework))
+			{
+				Logger.WriteDebug("Multi targeting project assembly detected.");
+				targetFramework = GetSuitableTargetFramework(project.GetPropertyValue(PropertyNames.TargetFrameworks));
+				Logger.WriteDebug($"Using target framework {targetFramework}.");
+			}
+
+			LockFileTarget lockFileTarget = lockFile.GetTarget(NuGetUtils.ParseFrameworkName(targetFramework), string.Empty);
 
 			NuGetPackageResolver nuGetPackageResolver =
 				NuGetPackageResolver.CreateResolver(lockFile, Path.GetDirectoryName(projectFilePath));
