@@ -1,12 +1,12 @@
 ﻿namespace Automaty.Samples.HelloWorld.MSBuild
 {
-	using Automaty.Common.Output;
+	using System.IO;
 
 	public class HelloWorld
 	{
-		public void Execute(IScriptContext context)
+		public void Execute()
 		{
-			context.Output.Current.WriteLine("// Hello World!");
+			File.WriteAllText("HelloWorld.generated.cs", "// Hello World!");
 		}
 	}
 }

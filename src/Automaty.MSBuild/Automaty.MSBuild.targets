@@ -17,7 +17,12 @@
 
 	<UsingTask TaskName="AutomatyTask" AssemblyFile="$(MSBuildThisFileDirectory)$(TaskAssemblySubPath)Automaty.MSBuild.dll" />
 
-	<Target Name="Automaty" DependsOnTargets="ResolveAutomatyFiles" BeforeTargets="CoreCompile">
+	<Target Name="Automaty" DependsOnTargets="ResolveAutomatyFiles" BeforeTargets="BeforeBuild">
 		<AutomatyTask ProjectFilePath="$(MSBuildProjectFullPath)" ScriptFiles="@(AutomatyFile)" IsVerbose="$(AutomatyIsVerbose)" />
+		<!-- See https://stackoverflow.com/questions/44818730/is-there-a-net-core-cli-pre-before-build-task -->
+		<ItemGroup>
+			<Compile Include="**/*$(DefaultLanguageSourceExtension)"
+				Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder);$(BaseIntermediateOutputPath)**;$(BaseOutputPath)**;@(Compile)" />
+		</ItemGroup>
 	</Target>
 </Project>

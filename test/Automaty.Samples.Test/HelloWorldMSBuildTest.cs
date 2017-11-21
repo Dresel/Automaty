@@ -2,6 +2,9 @@ namespace Automaty.Samples.Test
 {
 	using System;
 	using System.IO;
+	using System.Linq;
+	using System.Reflection;
+	using System.Runtime.Loader;
 	using Automaty.Core;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -31,8 +34,11 @@ namespace Automaty.Samples.Test
 			Helper.AssertGeneratedFileExists(sampleProjectDirectoryPath, generatedFilePath1);
 			Helper.AssertGeneratedFileExists(sampleProjectDirectoryPath, generatedFilePath2);
 
-			Assert.AreEqual($"// Hello World!{Environment.NewLine}", File.ReadAllText(Path.Combine(sampleProjectDirectoryPath, generatedFilePath1)));
-			Assert.AreEqual($"// Hello World!{Environment.NewLine}", File.ReadAllText(Path.Combine(sampleProjectDirectoryPath, generatedFilePath2)));
+			Assert.AreEqual($"// Hello World!", File.ReadAllText(Path.Combine(sampleProjectDirectoryPath, generatedFilePath1)));
+			Assert.AreEqual($"// Hello World!", File.ReadAllText(Path.Combine(sampleProjectDirectoryPath, generatedFilePath2)));
+
+			Assembly assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(Path.GetFullPath(Path.Combine(sampleProjectDirectoryPath, "bin\\Debug\\netstandard1.6\\Automaty.Samples.HelloWorld.MSBuild.dll".ToPlatformSpecificPath())));
+			Assert.IsTrue(assembly.GetTypes().Any(x => x.Name == "GeneratedClassPartOfCompilation"));
 		}
 	}
 }
