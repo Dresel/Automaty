@@ -95,7 +95,7 @@
 
 				string packageDirectory = nuGetPackageResolver.GetPackageDirectory(library.Name, library.Version);
 
-				foreach (LockFileItem file in library.RuntimeAssemblies.Where(file => !NuGetUtils.IsPlaceholderFile(file.Path)))
+				foreach (LockFileItem file in library.CompileTimeAssemblies.Where(file => !NuGetUtils.IsPlaceholderFile(file.Path)))
 				{
 					string filePath = Path.GetFullPath(Path.Combine(packageDirectory, file.Path));
 
