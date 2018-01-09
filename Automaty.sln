@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automaty.Core", "src\Automaty.Core\Automaty.Core.csproj", "{220952CC-7296-4C6F-8033-AAFF13630D46}"
 EndProject
@@ -36,6 +36,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automaty.Samples.HelloWorld.ProjectReferenceMulti.ClassLibrary", "samples\Automaty.Samples.HelloWorld.ProjectReferenceMulti.ClassLibrary\Automaty.Samples.HelloWorld.ProjectReferenceMulti.ClassLibrary.csproj", "{D9540AEE-5127-4105-A869-61C7FE087154}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automaty.Samples.HelloWorld.NuGetMulti", "samples\Automaty.Samples.HelloWorld.NuGetMulti\Automaty.Samples.HelloWorld.NuGetMulti.csproj", "{E435B3E5-CABD-4FC5-9155-ECFB3EF94541}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automaty.Samples.EFCore2.MSBuild", "samples\Automaty.Samples.EFCore2.MSBuild\Automaty.Samples.EFCore2.MSBuild.csproj", "{22F4AC5C-1B5A-4783-84A9-7D1F7A86C3FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{E435B3E5-CABD-4FC5-9155-ECFB3EF94541}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E435B3E5-CABD-4FC5-9155-ECFB3EF94541}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E435B3E5-CABD-4FC5-9155-ECFB3EF94541}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22F4AC5C-1B5A-4783-84A9-7D1F7A86C3FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22F4AC5C-1B5A-4783-84A9-7D1F7A86C3FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22F4AC5C-1B5A-4783-84A9-7D1F7A86C3FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22F4AC5C-1B5A-4783-84A9-7D1F7A86C3FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,6 +124,7 @@ Global
 		{6D95ABBB-35C5-48B7-B26F-8287ED4508FB} = {9D11DE25-2EFE-4C76-8A16-9DC3D5445E6A}
 		{D9540AEE-5127-4105-A869-61C7FE087154} = {9D11DE25-2EFE-4C76-8A16-9DC3D5445E6A}
 		{E435B3E5-CABD-4FC5-9155-ECFB3EF94541} = {9D11DE25-2EFE-4C76-8A16-9DC3D5445E6A}
+		{22F4AC5C-1B5A-4783-84A9-7D1F7A86C3FB} = {9D11DE25-2EFE-4C76-8A16-9DC3D5445E6A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {66B435B7-92D4-405C-BCAE-30EAE83609FD}
