@@ -25,7 +25,7 @@
 		{
 			Logger = logger;
 
-			MetadataReferences = new List<MetadataReference>(ScriptOptions.Default.MetadataReferences)
+			MetadataReferences = new List<MetadataReference>()
 			{
 				// Add Automaty.Core by default
 				MetadataReference.CreateFromFile(GetType().GetTypeInfo().Assembly.Location),
@@ -37,7 +37,7 @@
 
 		public ILogger<ScriptCompiler> Logger { get; set; }
 
-		public ICollection<MetadataReference> MetadataReferences { get; set; }
+		protected ICollection<MetadataReference> MetadataReferences { get; set; }
 
 		public void AddRuntimeLibraries(IEnumerable<Resolution.RuntimeLibrary> runtimeLibraries)
 		{
@@ -308,10 +308,29 @@
 
 		protected IEnumerable<MetadataReference> ResolveReferences(MetadataReferenceResolver metadataReferenceResolver)
 		{
-			List<MetadataReference> references = new List<MetadataReference>
+			void AddAssembly(Assembly assembly, ISet<Assembly> assemblies)
 			{
-				MetadataReference.CreateFromFile(typeof(object).GetTypeInfo().Assembly.Location)
-			};
+				if (assemblies.Contains(assembly)) return;
+
+				assemblies.Add(assembly);
+
+				foreach (AssemblyName referencedAssembly in assembly.GetReferencedAssemblies())
+				{
+					AddAssembly(Assembly.Load(referencedAssembly), assemblies);
+				}
+			}
+
+			Assembly netStandardAssembly = Assembly.Load(new AssemblyName("netstandard"));
+			HashSet<Assembly> assembliesSet = new HashSet<Assembly>();
+
+			AddAssembly(netStandardAssembly, assembliesSet);
+
+			List<MetadataReference> references = new List<MetadataReference>();
+
+			foreach (Assembly assembly in assembliesSet)
+			{
+				references.Add(MetadataReference.CreateFromFile(assembly.Location));
+			}
 
 			foreach (MetadataReference reference in MetadataReferences)
 			{
