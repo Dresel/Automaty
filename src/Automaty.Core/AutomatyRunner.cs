@@ -83,7 +83,6 @@
 				}
 
 				ScriptCompiler scriptCompiler = new ScriptCompiler(LoggerFactory.CreateLogger<ScriptCompiler>());
-				runtimeLibraries = runtimeLibraries.Where(x => x.Name != "Microsoft.NETCore.App").ToList();
 				scriptCompiler.AddRuntimeLibraries(runtimeLibraries);
 
 				ScriptRunner scriptRunner = new ScriptRunner(scriptCompiler, LoggerFactory);
