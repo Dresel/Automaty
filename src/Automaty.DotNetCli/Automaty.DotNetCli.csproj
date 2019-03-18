@@ -10,7 +10,7 @@
 		<PackageId>Automaty.DotNetCli</PackageId>
 		<PackageTags>CodeGeneration dotnet-cli CodeGen T4</PackageTags>
 		<PackageProjectUrl>https://github.com/Dresel/Automaty</PackageProjectUrl>
-		<PackageLicenseUrl>https://github.com/Dresel/Automaty/blob/master/LICENSE.md</PackageLicenseUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/Dresel/Automaty.git</RepositoryUrl>
 		<Authors>Christopher Dresel</Authors>

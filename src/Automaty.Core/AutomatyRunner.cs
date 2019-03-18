@@ -70,7 +70,8 @@
 #else
 					AppDomain.CurrentDomain.AssemblyResolve += (sender, args) =>
 					{
-						RuntimeLibrary runtimeLibrary = runtimeLibraries.FirstOrDefault(x => x.AssemblyName == args.Name);
+						RuntimeLibrary runtimeLibrary = runtimeLibraries
+							.FirstOrDefault(x => x.AssemblyName == new AssemblyName(args.Name).Name);
 
 						if (runtimeLibrary != null)
 						{

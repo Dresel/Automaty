@@ -61,7 +61,15 @@
 				}
 				else
 				{
-					MetadataReferences.Add(MetadataReference.CreateFromFile(runtimeLibrary.FilePath));
+					if (runtimeLibrary.IsPlaceholder)
+					{
+						MetadataReferences.Add(MetadataReference.CreateFromFile(
+							Assembly.Load(new AssemblyName(runtimeLibrary.AssemblyName)).Location));
+					}
+					else
+					{
+						MetadataReferences.Add(MetadataReference.CreateFromFile(runtimeLibrary.FilePath));
+					}
 				}
 			}
 		}

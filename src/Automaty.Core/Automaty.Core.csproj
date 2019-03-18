@@ -5,7 +5,7 @@
 		<Description>The core library for Automaty - a .NET Core based code automation tool for .NET Core projects.</Description>
 		<PackageTags>CodeGeneration CodeGen T4</PackageTags>
 		<PackageProjectUrl>https://github.com/Dresel/Automaty</PackageProjectUrl>
-		<PackageLicenseUrl>https://github.com/Dresel/Automaty/blob/master/LICENSE.md</PackageLicenseUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/Dresel/Automaty.git</RepositoryUrl>
 		<Authors>Christopher Dresel</Authors>
@@ -15,17 +15,18 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<TargetFrameworks Condition="'$(OS)' == 'Windows_NT'">netstandard1.6;net46</TargetFrameworks>
-		<TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard1.6</TargetFrameworks>
+		<TargetFrameworks Condition="'$(OS)' == 'Windows_NT'">netcoreapp2.2;net472</TargetFrameworks>
+		<TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netcoreapp2.2</TargetFrameworks>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Build" Version="15.6.85" />
-		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.6.85" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="2.2.0" />
-		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.0.0-preview1-002111" />
-		<PackageReference Include="NuGet.ProjectModel" Version="4.0.0" />
-		<PackageReference Include="NuGet.Versioning" Version="4.0.0" />
+		<PackageReference Include="Microsoft.Build" Version="16.0.452" />
+		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.0.452" />
+		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.2" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="2.10.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="3.0.0-preview3-27503-5" />
+		<PackageReference Include="NuGet.ProjectModel" Version="5.0.0-rtm.5856" />
+		<PackageReference Include="NuGet.Versioning" Version="5.0.0-rtm.5856" />
 	</ItemGroup>
 
 	<ItemGroup>

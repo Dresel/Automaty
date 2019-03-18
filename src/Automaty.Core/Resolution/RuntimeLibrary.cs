@@ -8,6 +8,8 @@
 
 		public string FilePath => Path.Combine(DirectoryName, FileName);
 
+		public bool IsPlaceholder { get; set; }
+
 		public string DirectoryName { get; set; }
 
 		public string FileName { get; set; }

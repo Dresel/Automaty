@@ -85,6 +85,27 @@
 			NuGetPackageResolver nuGetPackageResolver =
 				NuGetPackageResolver.CreateResolver(lockFile, Path.GetDirectoryName(projectFilePath));
 
+			// Add netstandard / netcoreapp placeholder libraries,
+			// because not every assembly will be loaded with Assembly.Load(new AssemblyName("netstandard"))
+			List<LockFileTargetLibrary> placeholderLibraries = lockFileTarget.Libraries.Where(library =>
+				!library.Name.StartsWith("NETStandard.") &&
+				!library.Name.StartsWith("runtime.") &&
+				!library.Name.StartsWith("Microsoft.") &&
+				library.CompileTimeAssemblies.Any(file => NuGetUtils.IsPlaceholderFile(file.Path))).ToList();
+
+			foreach (LockFileTargetLibrary library in placeholderLibraries)
+			{
+				Logger.WriteDebug($"Adding netstandard / netcoreapp placeholder library \"{library.Name}\".");
+
+				runtimeLibraries.Add(new RuntimeLibrary
+				{
+					Name = library.Name,
+					FileName = $"{library.Name}.dll",
+					DirectoryName = "_._",
+					IsPlaceholder = true,
+				});
+			}
+
 			// Add nuget references
 			foreach (LockFileTargetLibrary library in lockFileTarget.Libraries)
 			{
