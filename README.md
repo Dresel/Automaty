@@ -1,8 +1,8 @@
 # Automaty
 
-| Win (development)           | Linux (development)  |
+| Win (master)           | Linux (master)  |
 | :-------------: | :-------------: |
-| [![Build status](https://dev.azure.com/dresel/Automaty/_apis/build/status/Automaty%20CI%20(win)?branchName=development)](https://dev.azure.com/dresel/Automaty/_build/latest?definitionId=15) | [![Build status](https://dev.azure.com/dresel/Automaty/_apis/build/status/Automaty%20CI%20(linux)?branchName=development)](https://dev.azure.com/dresel/Automaty/_build/latest?definitionId=14) |
+| [![Build status](https://dev.azure.com/dresel/Automaty/_apis/build/status/Automaty%20CI%20(win)?branchName=master)](https://dev.azure.com/dresel/Automaty/_build/latest?definitionId=15) | [![Build status](https://dev.azure.com/dresel/Automaty/_apis/build/status/Automaty%20CI%20(linux)?branchName=master)](https://dev.azure.com/dresel/Automaty/_build/latest?definitionId=14) |
 
 Automaty is a .NET Core based code automation tool for .NET Core projects. It's similiar to and inspired by T4, [Scripty](https://github.com/daveaglick/Scripty) and [dotnet-script](https://github.com/filipw/dotnet-script). What distinguishes Automaty from the the rest? It's the combination of the following points:
 
