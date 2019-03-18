@@ -5,7 +5,7 @@
 	</ItemGroup>
 
 	<PropertyGroup>
-		<TaskAssemblySubPath Condition=" '$(MSBuildRuntimeType)' == 'Core' ">netstandard2.2\</TaskAssemblySubPath>
+		<TaskAssemblySubPath Condition=" '$(MSBuildRuntimeType)' == 'Core' ">netcoreapp2.2\</TaskAssemblySubPath>
 		<TaskAssemblySubPath Condition=" '$(MSBuildRuntimeType)' != 'Core' ">net47\</TaskAssemblySubPath>
 	</PropertyGroup>
 
