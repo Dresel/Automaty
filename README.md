@@ -1,6 +1,8 @@
 # Automaty
 
-[![Build status](https://ci.appveyor.com/api/projects/status/lirp1ejbortnbmf7?svg=true)](https://ci.appveyor.com/project/Dresel/automaty)
+| Win (development)           | Linux (development)  |
+| :-------------: | :-------------: |
+| [![Build status](https://dev.azure.com/dresel/Automaty/_apis/build/status/Automaty%20CI%20(win))](https://dev.azure.com/dresel/Automaty/_build/latest?definitionId=15) | [![Build status](https://dev.azure.com/dresel/Automaty/_apis/build/status/Automaty%20CI%20(linux))](https://dev.azure.com/dresel/Automaty/_build/latest?definitionId=14) |
 
 Automaty is a .NET Core based code automation tool for .NET Core projects. It's similiar to and inspired by T4, [Scripty](https://github.com/daveaglick/Scripty) and [dotnet-script](https://github.com/filipw/dotnet-script). What distinguishes Automaty from the the rest? It's the combination of the following points:
 
@@ -23,8 +25,8 @@ Edit your project file and add the DotNetCli tool as reference to your project (
 
 ```xml
 <ItemGroup>
-    <PackageReference Include="Automaty.Common" Version="1.0.0-alpha2" />
-    <DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.0-alpha7" />
+    <PackageReference Include="Automaty.Common" Version="1.0.1-*" />
+    <DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.1-*" />
 </ItemGroup>
 ```
 
@@ -68,8 +70,8 @@ This makes it possible to use libraries like EntityFrameworkCore for code genera
 
 ```xml
 <ItemGroup>
-    <PackageReference Include="Automaty.Common" Version="1.0.0-alpha2" />
-    <DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.0-alpha7" />
+    <PackageReference Include="Automaty.Common" Version="1.0.1-*" />
+    <DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.1-*" />
 
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
 </ItemGroup>
@@ -124,8 +126,8 @@ If you do not want to use the DotNetCli by hand, you can use the MSBuild task:
 
 ```xml
 <ItemGroup>
-    <PackageReference Include="Automaty.MSBuild" Version="1.0.0-alpha5" />
-    <DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.0-alpha7" />
+    <PackageReference Include="Automaty.MSBuild" Version="1.0.1-*" />
+    <DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.1-*" />
 </ItemGroup>
 ```
 
