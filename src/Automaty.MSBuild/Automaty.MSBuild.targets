@@ -5,8 +5,8 @@
 	</ItemGroup>
 
 	<PropertyGroup>
-		<TaskAssemblySubPath Condition=" '$(MSBuildRuntimeType)' == 'Core' ">netstandard2.0\</TaskAssemblySubPath>
-		<TaskAssemblySubPath Condition=" '$(MSBuildRuntimeType)' != 'Core' ">net46\</TaskAssemblySubPath>
+		<TaskAssemblySubPath Condition=" '$(MSBuildRuntimeType)' == 'Core' ">netstandard2.2\</TaskAssemblySubPath>
+		<TaskAssemblySubPath Condition=" '$(MSBuildRuntimeType)' != 'Core' ">net47\</TaskAssemblySubPath>
 	</PropertyGroup>
 
 	<Target Name="ResolveAutomatyFiles">
