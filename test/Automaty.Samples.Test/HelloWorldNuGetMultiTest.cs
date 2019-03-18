@@ -7,17 +7,17 @@
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 	[TestClass]
-	public class HelloWorldNugetMultiTest
+	public class HelloWorldNuGetMultiTest
 	{
-		protected const string ProjectDirectoryPath = "./samples/Automaty.Samples.HelloWorld.NugetMulti/";
+		protected const string ProjectDirectoryPath = "./samples/Automaty.Samples.HelloWorld.NuGetMulti/";
 
-		protected const string ProjectFilePath = "Automaty.Samples.HelloWorld.NugetMulti.csproj";
+		protected const string ProjectFilePath = "Automaty.Samples.HelloWorld.NuGetMulti.csproj";
 
 		[TestMethod]
-		public void AutomatyHelloWorldNugetMultiCsvGenerateFiles()
+		public void AutomatyHelloWorldNuGetMultiCsvGenerateFiles()
 		{
-			string sampleProjectDirectoryPath = HelloWorldNugetMultiTest.ProjectDirectoryPath.ToPlatformSpecificPath();
-			string projectFilePath = HelloWorldNugetMultiTest.ProjectFilePath;
+			string sampleProjectDirectoryPath = HelloWorldNuGetMultiTest.ProjectDirectoryPath.ToPlatformSpecificPath();
+			string projectFilePath = HelloWorldNuGetMultiTest.ProjectFilePath;
 
 			string sourceFilePath = "HelloWorldCsv.cs";
 			string generatedFilePath = "helloworld.csv";
@@ -36,10 +36,10 @@
 		}
 
 		[TestMethod]
-		public void AutomatyHelloWorldNugetMultiJsonGenerateFiles()
+		public void AutomatyHelloWorldNuGetMultiJsonGenerateFiles()
 		{
-			string sampleProjectDirectoryPath = HelloWorldNugetMultiTest.ProjectDirectoryPath.ToPlatformSpecificPath();
-			string projectFilePath = HelloWorldNugetMultiTest.ProjectFilePath;
+			string sampleProjectDirectoryPath = HelloWorldNuGetMultiTest.ProjectDirectoryPath.ToPlatformSpecificPath();
+			string projectFilePath = HelloWorldNuGetMultiTest.ProjectFilePath;
 
 			string sourceFilePath = "HelloWorldJson.cs";
 			string generatedFilePath = "helloworld.json";
