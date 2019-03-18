@@ -16,8 +16,8 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<TargetFrameworks Condition="'$(OS)' == 'Windows_NT'">netstandard2.0;net46</TargetFrameworks>
-		<TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard2.0</TargetFrameworks>
+		<TargetFrameworks Condition="'$(OS)' == 'Windows_NT'">netcoreapp2.2;net472</TargetFrameworks>
+		<TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netcoreapp2.2</TargetFrameworks>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -38,7 +38,7 @@
 	</Target>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.9.20" />
+		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.0.452" />
 	</ItemGroup>
 
 </Project>
