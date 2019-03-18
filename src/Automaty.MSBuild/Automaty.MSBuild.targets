@@ -6,7 +6,7 @@
 
 	<PropertyGroup>
 		<TaskAssemblySubPath Condition=" '$(MSBuildRuntimeType)' == 'Core' ">netcoreapp2.2\</TaskAssemblySubPath>
-		<TaskAssemblySubPath Condition=" '$(MSBuildRuntimeType)' != 'Core' ">net47\</TaskAssemblySubPath>
+		<TaskAssemblySubPath Condition=" '$(MSBuildRuntimeType)' != 'Core' ">net472\</TaskAssemblySubPath>
 	</PropertyGroup>
 
 	<Target Name="ResolveAutomatyFiles">
