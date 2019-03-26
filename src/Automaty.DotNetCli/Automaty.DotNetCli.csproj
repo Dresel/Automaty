@@ -3,8 +3,7 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>netcoreapp2.2</TargetFramework>
 		<AssemblyName>dotnet-automaty</AssemblyName>
-
-		<Version>1.0.1-rc1</Version>
+		<Version>2.2.0-rc1</Version>
 		<PackageType>DotNetCliTool</PackageType>
 		<Description>The command-line interface (CLI) for Automaty - a .NET Core based code automation tool for .NET Core projects.</Description>
 		<PackageId>Automaty.DotNetCli</PackageId>
