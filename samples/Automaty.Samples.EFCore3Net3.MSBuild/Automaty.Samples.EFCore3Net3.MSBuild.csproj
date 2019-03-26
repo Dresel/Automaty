@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0-preview3.19153.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.0.0-preview3.19153.1" />
+		<PackageReference Include="SmartFormat.NET" Version="2.0.0" />
+
+		<PackageReference Include="Automaty.MSBuild" Version="1.0.1-*" />
+		<PackageReference Include="Automaty.Common" Version="1.0.1-*" />
+		<DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.1-*" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<AutomatyIsVerbose>True</AutomatyIsVerbose>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Update="Repository.Automaty.*.cs">
+			<DependentUpon>Repository.Automaty.cs</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+</Project>
