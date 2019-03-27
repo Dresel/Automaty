@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "Automaty.DotNetCli": {
-      "commandName": "Project",
-      "commandLineArgs": "run C:\\Users\\chris\\Projects\\Automaty.Generators.EFCoreRepositories\\samples\\Automaty.Generators.EFCoreRepositories.Sample\\Repositories\\Host.cs --project C:\\Users\\chris\\Projects\\Automaty.Generators.EFCoreRepositories\\samples\\Automaty.Generators.EFCoreRepositories.Sample\\Automaty.Generators.EFCoreRepositories.Sample.csproj --verbose"
-    }
-  }
-}
