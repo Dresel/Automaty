@@ -6,7 +6,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Automaty.MSBuild" Version="1.0.1-*" />
-		<DotNetCliToolReference Include="Automaty.DotNetCli" Version="[2.2.0-*,3.0.0)" />
+		<DotNetCliToolReference Include="Automaty.DotNetCli" Version="[3.0.0-*,4.0.0)" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>netcoreapp2.2</TargetFramework>
+		<TargetFramework>netcoreapp3.0</TargetFramework>
 		<AssemblyName>dotnet-automaty</AssemblyName>
-		<Version>2.2.0-rc1</Version>
+		<Version>3.0.0-alpha1</Version>
 		<PackageType>DotNetCliTool</PackageType>
 		<Description>The command-line interface (CLI) for Automaty - a .NET Core based code automation tool for .NET Core projects.</Description>
 		<PackageId>Automaty.DotNetCli</PackageId>
