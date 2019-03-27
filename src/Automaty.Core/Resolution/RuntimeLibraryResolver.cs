@@ -88,9 +88,7 @@
 			// Add netstandard / netcoreapp placeholder libraries,
 			// because not every assembly will be loaded with Assembly.Load(new AssemblyName("netstandard"))
 			List<LockFileTargetLibrary> placeholderLibraries = lockFileTarget.Libraries.Where(library =>
-				!library.Name.StartsWith("NETStandard.") &&
-				!library.Name.StartsWith("runtime.") &&
-				!library.Name.StartsWith("Microsoft.") &&
+				library.Name.StartsWith("System.") &&
 				library.CompileTimeAssemblies.Any(file => NuGetUtils.IsPlaceholderFile(file.Path))).ToList();
 
 			foreach (LockFileTargetLibrary library in placeholderLibraries)

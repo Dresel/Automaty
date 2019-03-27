@@ -1,7 +1,9 @@
 ﻿namespace Automaty.Core.Execution
 {
+	using System;
 	using System.Collections.Generic;
 	using System.Collections.Immutable;
+	using System.Diagnostics;
 	using System.IO;
 	using System.Linq;
 	using System.Reflection;
@@ -57,18 +59,40 @@
 						Logger.WriteDebug($"Adding {assembly.Location} instead of {runtimeLibrary.FilePath}.");
 					}
 
-					MetadataReferences.Add(MetadataReference.CreateFromFile(assembly.Location));
+					try
+					{
+						MetadataReferences.Add(MetadataReference.CreateFromFile(assembly.Location));
+					}
+					catch (Exception e)
+					{
+						Logger.WriteError($"Couldn't add library '{assembly.Location}'.");
+					}
 				}
 				else
 				{
 					if (runtimeLibrary.IsPlaceholder)
 					{
-						MetadataReferences.Add(MetadataReference.CreateFromFile(
-							Assembly.Load(new AssemblyName(runtimeLibrary.AssemblyName)).Location));
+						try
+						{
+							MetadataReferences.Add(MetadataReference.CreateFromFile(
+								Assembly.Load(new AssemblyName(runtimeLibrary.AssemblyName)).Location));
+						}
+						catch (Exception e)
+						{
+							Logger.WriteError($"Couldn't add placeholder library '{runtimeLibrary.AssemblyName}'.");
+						}
+
 					}
 					else
 					{
-						MetadataReferences.Add(MetadataReference.CreateFromFile(runtimeLibrary.FilePath));
+						try
+						{
+							MetadataReferences.Add(MetadataReference.CreateFromFile(runtimeLibrary.FilePath));
+						}
+						catch (Exception e)
+						{
+							Logger.WriteError($"Couldn't add library '{runtimeLibrary.FilePath}'.");
+						}
 					}
 				}
 			}
