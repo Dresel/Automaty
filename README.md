@@ -1,8 +1,10 @@
 # Automaty
 
-| Win (master)           | Linux (master)  |
-| :-------------: | :-------------: |
-| [![Build status](https://dev.azure.com/dresel/Automaty/_apis/build/status/Automaty%20CI%20(win)?branchName=master)](https://dev.azure.com/dresel/Automaty/_build/latest?definitionId=15) | [![Build status](https://dev.azure.com/dresel/Automaty/_apis/build/status/Automaty%20CI%20(linux)?branchName=master)](https://dev.azure.com/dresel/Automaty/_build/latest?definitionId=14) |
+| Branch           | Win           | Linux  |
+| :-------------: | :-------------: | :-------------: |
+| 2.2 | [![Build status](https://dev.azure.com/dresel/Automaty/_apis/build/status/Automaty%20CI%20(win-2.2)?branchName=2.2)](https://dev.azure.com/dresel/Automaty/_build/latest?definitionId=16) | [![Build status](https://dev.azure.com/dresel/Automaty/_apis/build/status/Automaty%20CI%20(linux-2.2)?branchName=2.2)](https://dev.azure.com/dresel/Automaty/_build/latest?definitionId=17) |
+| 3.0 | [![Build status](https://dev.azure.com/dresel/Automaty/_apis/build/status/Automaty%20CI%20(win-3.0)?branchName=3.0)](https://dev.azure.com/dresel/Automaty/_build/latest?definitionId=14) | [![Build status](https://dev.azure.com/dresel/Automaty/_apis/build/status/Automaty%20CI%20(linux-3.0)?branchName=3.0)](https://dev.azure.com/dresel/Automaty/_build/latest?definitionId=15) |
+| master | [![Build status](https://dev.azure.com/dresel/Automaty/_apis/build/status/Automaty%20CI%20(win-3.0)?branchName=master)](https://dev.azure.com/dresel/Automaty/_build/latest?definitionId=14) | [![Build status](https://dev.azure.com/dresel/Automaty/_apis/build/status/Automaty%20CI%20(linux-3.0)?branchName=master)](https://dev.azure.com/dresel/Automaty/_build/latest?definitionId=15) |
 
 Automaty is a .NET Core based code automation tool for .NET Core projects. It's similiar to and inspired by T4, [Scripty](https://github.com/daveaglick/Scripty) and [dotnet-script](https://github.com/filipw/dotnet-script). What distinguishes Automaty from the the rest? It's the combination of the following points:
 
@@ -15,6 +17,10 @@ Automaty is a .NET Core based code automation tool for .NET Core projects. It's 
 
 Criticism, comments and or suggestions are welcome.
 
+## ! Which version to use !
+
+If you are running the tool on NET Core 2.2 use the 2.2 NuGet versions, otherwise use the 3.0 NuGet version.
+
 ## Automaty based generators
 
 * [EFCoreRepositories](https://github.com/Dresel/Automaty.Generators.EFCoreRepositories) An Automaty based generator for Entity Framework Core repositories. Creates strongly typed repositories based on the IModel of your context. 
@@ -25,8 +31,8 @@ Edit your project file and add the DotNetCli tool as reference to your project (
 
 ```xml
 <ItemGroup>
-    <PackageReference Include="Automaty.Common" Version="1.0.1-*" />
-    <DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.1-*" />
+    <PackageReference Include="Automaty.Common" Version="2.2.0-*" />
+    <DotNetCliToolReference Include="Automaty.DotNetCli" Version="2.2.0-*" />
 </ItemGroup>
 ```
 
@@ -70,8 +76,8 @@ This makes it possible to use libraries like EntityFrameworkCore for code genera
 
 ```xml
 <ItemGroup>
-    <PackageReference Include="Automaty.Common" Version="1.0.1-*" />
-    <DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.1-*" />
+    <PackageReference Include="Automaty.Common" Version="2.2.0-*" />
+    <DotNetCliToolReference Include="Automaty.DotNetCli" Version="2.2.0-*" />
 
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
 </ItemGroup>
@@ -126,8 +132,8 @@ If you do not want to use the DotNetCli by hand, you can use the MSBuild task:
 
 ```xml
 <ItemGroup>
-    <PackageReference Include="Automaty.MSBuild" Version="1.0.1-*" />
-    <DotNetCliToolReference Include="Automaty.DotNetCli" Version="1.0.1-*" />
+    <PackageReference Include="Automaty.MSBuild" Version="2.2.0-*" />
+    <DotNetCliToolReference Include="Automaty.DotNetCli" Version="2.2.0-*" />
 </ItemGroup>
 ```
 
