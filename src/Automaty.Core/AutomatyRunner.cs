@@ -8,7 +8,7 @@
 	using Automaty.Core.Execution;
 	using Automaty.Core.Logging;
 	using Automaty.Core.Resolution;
-
+	using Microsoft.Build.Locator;
 #if NETSTANDARD1_6
 	using System.Runtime.Loader;
 #else
@@ -31,6 +31,9 @@
 		public bool Execute(IEnumerable<string> sourceFilePaths, string projectFilePath)
 		{
 			ILogger<AutomatyRunner> logger = LoggerFactory.CreateLogger<AutomatyRunner>();
+
+			logger.WriteDebug($"Registering MSBuild for DotNetSdk");
+			RegisterMSBuildForDotNetSdk();
 
 			try
 			{
@@ -113,6 +116,17 @@
 			}
 
 			return false;
+		}
+
+		protected void RegisterMSBuildForDotNetSdk()
+		{
+			VisualStudioInstance visualStudioInstance = MSBuildLocator.QueryVisualStudioInstances(
+				new VisualStudioInstanceQueryOptions()
+				{
+					DiscoveryTypes = DiscoveryType.DotNetSdk
+				}).First();
+
+			MSBuildLocator.RegisterInstance(visualStudioInstance);
 		}
 	}
 }

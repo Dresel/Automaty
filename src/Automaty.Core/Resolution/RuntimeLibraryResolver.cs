@@ -7,7 +7,6 @@
 	using Automaty.Common.Logging;
 	using Automaty.Core.Logging;
 	using Microsoft.Build.Evaluation;
-	using Microsoft.Build.Locator;
 	using NuGet.LibraryModel;
 	using NuGet.ProjectModel;
 
@@ -27,8 +26,6 @@
 		public IEnumerable<RuntimeLibrary> GetRuntimeLibraries(string projectFilePath)
 		{
 			Logger.WriteDebug("Reading project file.");
-
-			RegisterMSBuildForDotNetSdk();
 
 			projectFilePath = Path.GetFullPath(projectFilePath.ToPlatformSpecificPath());
 
@@ -203,17 +200,6 @@
 				frameworks[0];
 
 			return targetFramework;
-		}
-
-		protected void RegisterMSBuildForDotNetSdk()
-		{
-			VisualStudioInstance visualStudioInstance = MSBuildLocator.QueryVisualStudioInstances(
-				new VisualStudioInstanceQueryOptions()
-				{
-					DiscoveryTypes = DiscoveryType.DotNetSdk
-				}).First();
-
-			MSBuildLocator.RegisterInstance(visualStudioInstance);
 		}
 	}
 }
