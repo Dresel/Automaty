@@ -12,6 +12,7 @@
 		<Company>Christopher Dresel</Company>
 		<PackageOutputPath>..\..\.nuget\packages\Automaty.Core</PackageOutputPath>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<DisableMSBuildAssemblyCopyCheck>true</DisableMSBuildAssemblyCopyCheck>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -21,6 +22,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Build" Version="16.0.452" />
+		<PackageReference Include="Microsoft.Build.Locator" Version="1.2.2" />
 		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.0.452" />
 		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.2" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="2.10.0" />

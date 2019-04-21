@@ -7,6 +7,7 @@
 	using Automaty.Common.Logging;
 	using Automaty.Core.Logging;
 	using Microsoft.Build.Evaluation;
+	using Microsoft.Build.Locator;
 	using NuGet.LibraryModel;
 	using NuGet.ProjectModel;
 
@@ -27,9 +28,9 @@
 		{
 			Logger.WriteDebug("Reading project file.");
 
-			projectFilePath = Path.GetFullPath(projectFilePath.ToPlatformSpecificPath());
+			RegisterMSBuildForDotNetSdk();
 
-			Environment.SetEnvironmentVariable(MSBuildFinder.MSBuildEnvironmentVariableName, MSBuildFinder.Find());
+			projectFilePath = Path.GetFullPath(projectFilePath.ToPlatformSpecificPath());
 
 			ProjectCollection projectCollection = new ProjectCollection();
 			Project project = projectCollection.LoadProject(projectFilePath);
@@ -64,7 +65,8 @@
 
 			if (!File.Exists(lockFileFilePath))
 			{
-				Logger.WriteError($"Lock file {lockFileFilePath} not found. Run dotnet restore before executing Automaty.");
+				Logger.WriteError(
+					$"Lock file {lockFileFilePath} not found. Run dotnet restore before executing Automaty.");
 
 				throw new AutomatyException();
 			}
@@ -80,7 +82,8 @@
 				Logger.WriteDebug($"Using target framework {targetFramework}.");
 			}
 
-			LockFileTarget lockFileTarget = lockFile.GetTarget(NuGetUtils.ParseFrameworkName(targetFramework), string.Empty);
+			LockFileTarget lockFileTarget =
+				lockFile.GetTarget(NuGetUtils.ParseFrameworkName(targetFramework), string.Empty);
 
 			NuGetPackageResolver nuGetPackageResolver =
 				NuGetPackageResolver.CreateResolver(lockFile, Path.GetDirectoryName(projectFilePath));
@@ -114,7 +117,8 @@
 
 				string packageDirectory = nuGetPackageResolver.GetPackageDirectory(library.Name, library.Version);
 
-				foreach (LockFileItem file in library.CompileTimeAssemblies.Where(file => !NuGetUtils.IsPlaceholderFile(file.Path)))
+				foreach (LockFileItem file in library.CompileTimeAssemblies.Where(file =>
+					!NuGetUtils.IsPlaceholderFile(file.Path)))
 				{
 					string filePath = Path.GetFullPath(Path.Combine(packageDirectory, file.Path));
 
@@ -150,7 +154,8 @@
 			foreach (ProjectItem projectItem in projectItems)
 			{
 				Project referencedProject =
-					projectCollection.LoadProject(Path.Combine(Path.GetDirectoryName(projectFilePath), projectItem.EvaluatedInclude));
+					projectCollection.LoadProject(Path.Combine(Path.GetDirectoryName(projectFilePath),
+						projectItem.EvaluatedInclude));
 
 				// TODO: Log?
 				if (referencedProject.GetProperty(PropertyNames.OutputType).EvaluatedValue != "Library")
@@ -158,7 +163,8 @@
 					continue;
 				}
 
-				string outputPath = referencedProject.GetProperty(PropertyNames.OutputPath).EvaluatedValue.ToPlatformSpecificPath();
+				string outputPath = referencedProject.GetProperty(PropertyNames.OutputPath).EvaluatedValue
+					.ToPlatformSpecificPath();
 				string assemblyName = referencedProject.GetProperty(PropertyNames.AssemblyName).EvaluatedValue;
 				string targetFrameworks = referencedProject.GetProperty(PropertyNames.TargetFrameworks)?.EvaluatedValue;
 
@@ -166,8 +172,8 @@
 				if (targetFrameworks != null)
 				{
 					Logger.WriteDebug("Multi targeting project assembly referenced.");
-					filePath = GetMultiTargetingProjectAssemblyPath(referencedProject.DirectoryPath, targetFrameworks, outputPath,
-						assemblyName);
+					filePath = GetMultiTargetingProjectAssemblyPath(referencedProject.DirectoryPath, targetFrameworks,
+						outputPath, assemblyName);
 				}
 				else
 				{
@@ -193,9 +199,21 @@
 
 			string targetFramework =
 				frameworks.FirstOrDefault(f => f.StartsWith("netstandard", StringComparison.OrdinalIgnoreCase)) ??
-				frameworks.FirstOrDefault(f => f.StartsWith("netcoreapp", StringComparison.OrdinalIgnoreCase)) ?? frameworks[0];
+				frameworks.FirstOrDefault(f => f.StartsWith("netcoreapp", StringComparison.OrdinalIgnoreCase)) ??
+				frameworks[0];
 
 			return targetFramework;
+		}
+
+		protected void RegisterMSBuildForDotNetSdk()
+		{
+			VisualStudioInstance visualStudioInstance = MSBuildLocator.QueryVisualStudioInstances(
+				new VisualStudioInstanceQueryOptions()
+				{
+					DiscoveryTypes = DiscoveryType.DotNetSdk
+				}).First();
+
+			MSBuildLocator.RegisterInstance(visualStudioInstance);
 		}
 	}
 }
