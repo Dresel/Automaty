@@ -32,9 +32,9 @@
 
 		public static void AutomatyRun(string sampleProjectDirectoryPath, string parameter)
 		{
-			if (StartProcess(sampleProjectDirectoryPath, "dotnet", $"automaty run {parameter} --verbose") != 0)
+			if (StartProcess(sampleProjectDirectoryPath, "automaty", $"run {parameter} --verbose") != 0)
 			{
-				throw new InvalidOperationException("dotnet automaty failed.");
+				throw new InvalidOperationException("automaty failed.");
 			}
 		}
 
