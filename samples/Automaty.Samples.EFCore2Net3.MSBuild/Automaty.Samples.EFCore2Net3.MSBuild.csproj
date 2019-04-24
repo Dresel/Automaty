@@ -11,7 +11,6 @@
 
 		<PackageReference Include="Automaty.MSBuild" Version="[3.0.0-*,4.0.0)" />
 		<PackageReference Include="Automaty.Common" Version="[3.0.0-*,4.0.0)" />
-		<DotNetCliToolReference Include="Automaty.DotNetCli" Version="[3.0.0-*,4.0.0)" />
 	</ItemGroup>
 
 	<PropertyGroup>
