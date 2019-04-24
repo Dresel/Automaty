@@ -28,7 +28,7 @@
 			}
 
 			// Instead we call the DotNetCli tool
-			string arguments = $"automaty run {string.Join(" ", ScriptFiles.Select(x => $"\"{x.ItemSpec}\""))}";
+			string arguments = $"run {string.Join(" ", ScriptFiles.Select(x => $"\"{x.ItemSpec}\""))}";
 
 			if (string.IsNullOrEmpty(ProjectFilePath))
 			{
@@ -46,7 +46,7 @@
 
 			ProcessStartInfo projectStartInfo = new ProcessStartInfo
 			{
-				FileName = "dotnet",
+				FileName = "automaty",
 				Arguments = arguments,
 				CreateNoWindow = true,
 				UseShellExecute = false,
