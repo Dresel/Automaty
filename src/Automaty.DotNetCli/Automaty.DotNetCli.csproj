@@ -16,6 +16,8 @@
 		<Company>Christopher Dresel</Company>
 		<PackageOutputPath>..\..\.nuget\packages\Automaty.DotNetCli</PackageOutputPath>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackAsTool>true</PackAsTool>
+		<ToolCommandName>automaty</ToolCommandName>
 	</PropertyGroup>
 
 	<ItemGroup>
